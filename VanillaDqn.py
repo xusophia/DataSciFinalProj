@@ -53,7 +53,7 @@ class DQN(nn.Module):
             next_states.append(np.array(next_state, copy=False))
             dones.append(done)
         states = torch.as_tensor(np.array(states))
-        actions = torch.as_tensor(np.array(actions))
+        actions = torch.as_tensor(np.array(actions, dtype=np.int64))
         rewards = torch.as_tensor(np.array(rewards, dtype=np.float32))
         next_states = torch.as_tensor(np.array(next_states))
         dones = torch.as_tensor(np.array(dones, dtype=np.float32))
