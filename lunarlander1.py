@@ -2,7 +2,10 @@ import gym
 from VanillaDqn import DQN
 import numpy as np
 import torch
+from gym.wrappers.monitoring.video_recorder import VideoRecorder
+import matplotlib.pyplot as plt
 env = gym.make('LunarLander-v2')
+# recorder = VideoRecorder(env, path='results/vanilladqn.mp4')
 episodes = 1000
 epsilon = 1.0
 gamma = 0.99
@@ -10,16 +13,17 @@ buffer_size = 500000
 counter = 0
 update_t = 5
 batch_size = 32
-lr = 1e-4
+lr = 1e-3
 network = DQN(env, lr = lr, gamma = gamma, epsilon = epsilon, buffer_size =buffer_size)
 reward_list_ep = []
-
+reward_last_100_eps = []
 for episode in range(episodes+1):
     state = env.reset().astype(np.float32)
     reward_ep, done = 0, False
-    reward_last_100_eps = []
+
     while not done:
-        env.render() # Comment this if you do not want rendering
+        #env.unwrapped.render() # Comment this if you do not want rendering
+        #recorder.capture_frame()
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
         next_state, reward, done, info = env.step(action)
@@ -39,13 +43,24 @@ for episode in range(episodes+1):
         network.epsilon*=network.epsilon_decay
     reward_list_ep.append(reward_ep)
 
-    if len(reward_last_100_eps)==100:
-        reward_last_100_eps = reward_last_100_eps[1:0]
+    if len(reward_last_100_eps) == 100:
+        reward_last_100_eps = reward_last_100_eps[1:]
     reward_last_100_eps.append(reward_ep)
 
-    if episode % 50 == 0:
+    if episode % 50 == 0 and episode>1:
         print(f'Episode {episode}/{episodes}. Epsilon: {network.epsilon:.3f}.'
               f' Reward in the last 100 episodes: {np.mean(reward_last_100_eps):.2f}')
-    # last_rewards_mean = np.mean(reward_last_100_eps)
-    # if(last_rewards_mean>200)
+    last_rewards_mean = np.mean(reward_last_100_eps)
+    if last_rewards_mean>200:
+        break
 env.close()
+
+fig = plt.figure(figsize=(20,10))
+plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('results/vanillaDQNscatter.png')
+plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('results/vanillaDQNplot.png')
