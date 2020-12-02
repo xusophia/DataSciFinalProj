@@ -248,6 +248,7 @@ if __name__ == '__main__':
                 env.render()
             buffer.store(obs, action, reward, next_obs, done)
             reward_total += reward
+            plt.scatter(i, reward)
             obs = next_obs
             if i > exploration:
                 train(eval_net, target_net, buffer, v_min, v_max, atoms_num, gamma, batch_size, optimizer, count, update_freq, n_step)
@@ -258,7 +259,7 @@ if __name__ == '__main__':
                     weight_reward = reward_total
                 else:
                     weight_reward = 0.9 * weight_reward + 0.1 * reward_total
-                plt.scatter(i, reward_total)
+
                 print('episode: {}  reward: {}  weight_reward: {:.3f}  epsilon: {:.2f}'.format(i+1, reward_total, weight_reward, epsilon))
                 break
 
