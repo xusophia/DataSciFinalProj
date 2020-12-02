@@ -378,3 +378,4 @@ for i in range(len(list_episode)):
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
 plt.show()
+plt.savefig('results/Rainbowplot.png')
