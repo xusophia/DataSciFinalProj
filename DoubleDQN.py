@@ -34,7 +34,7 @@ def make_dqn():
                           nn.ReLU(inplace = True),
                           nn.Linear(512, 256),
                           nn.ReLU(inplace = True),
-                          nn.Linear(256, env.action_space.n)).to(device)
+                          nn.Linear(256, env.action_space.n))
     loss_function = nn.MSELoss # define MSE as the loss function
     optimizer = torch.optim.Adam(model.parameters(), lr = 0.0001)
     return model, loss_function, optimizer
@@ -44,6 +44,7 @@ class DDQNAgent(object):
         self.env = gym.make('LunarLander-v2')
         self.memory = []
         dqn_mod, loss_func, optimizer = make_dqn()
+        self.model = dqn_mod
         self.online_network = dqn_mod
         self.target_network = dqn_mod
         self.optimizer = optimizer
@@ -53,13 +54,9 @@ class DDQNAgent(object):
 
     def get_action(self, state):
         if np.random.uniform() < self.epsilon:
-            # explore
             return self.env.action_space.sample()
         else:
-            # exploit
-            state = self._reshape_state_for_net(state)
-            q_values = self.online_network(state)
-            return np.argmax(q_values)
+            return np.argmax(self.model(state).data.numpy())
 
     def experience_replay(self):
 
@@ -69,21 +66,23 @@ class DDQNAgent(object):
         for experience in minibatch:
             state, action, reward, next_state, done = experience
             state = self._reshape_state_for_net(state)
-            experience_new_q_values = self.online_network.predict(state)[0]
+            state_tensor = torch.from_numpy(state)
+            experience_new_q_values = self.online_network(state_tensor)
             if done:
                 q_update = reward
             else:
                 next_state = self._reshape_state_for_net(next_state)
                 # using online network to SELECT action
-                online_net_selected_action = np.argmax(self.online_network.predict(next_state))
+                next_state_tensor = torch.from_numpy(next_state)
+                online_net_selected_action = np.argmax(self.online_network(next_state_tensor).data.numpy())
                 # using target network to EVALUATE action
-                target_net_evaluated_q_value = self.target_network.predict(next_state)[0][online_net_selected_action]
+                target_net_evaluated_q_value = self.target_network(next_state_tensor)
                 q_update = reward + GAMMA * target_net_evaluated_q_value
-            experience_new_q_values[action] = q_update
+            experience_new_q_values[action%1] = q_update
             minibatch_new_q_values.append(experience_new_q_values)
         minibatch_states = np.array([e[0] for e in minibatch])
         minibatch_new_q_values = np.array(minibatch_new_q_values)
-        self.online_network.fit(minibatch_states, minibatch_new_q_values, verbose=False, epochs=1)
+        self.online_network.train(minibatch_states)
 
 
     def update_target_network(self):
@@ -128,7 +127,8 @@ def test_agent():
             episode_score = 0
 
             for _ in range(MAX_STEPS_PER_EPISODE):
-                action = agent.get_action(state)
+                state_tensor = torch.from_numpy(state)
+                action = agent.get_action(state_tensor)
                 next_state, reward, done, _ = env.step(action)
                 episode_score += reward
                 agent.remember(state, action, reward, next_state, done)
