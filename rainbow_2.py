@@ -216,7 +216,7 @@ if __name__ == '__main__':
     batch_size = 64
     capacity = 10000
     exploration = 200
-    n_step = 20
+    n_step = 25
     render = False
 
     env = gym.make('LunarLander-v2')
