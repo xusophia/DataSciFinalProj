@@ -234,7 +234,7 @@ if __name__ == '__main__':
     epsilon = epsilon_init
 
     for i in range(episode):
-        plt.scatter(i, reward)
+
         obs = env.reset()
         reward_total = 0
         if render:
@@ -257,6 +257,7 @@ if __name__ == '__main__':
                     weight_reward = reward_total
                 else:
                     weight_reward = 0.9 * weight_reward + 0.1 * reward_total
+                plt.scatter(i, reward)
                 print('episode: {}  reward: {}  weight_reward: {:.3f}  epsilon: {:.2f}'.format(i+1, reward_total, weight_reward, epsilon))
                 break
 
