@@ -10,7 +10,7 @@ env.seed(0)
 np.random.seed(0)
 
 # my_model = models.load_model("def_DQN.h5")
-my_model = torch.load("VanillaDQN.pt")
+my_model = torch.load("RainbowDQN.pt")
 
 # state = env.reset()
 # state = np.reshape(state, (1, 8))
