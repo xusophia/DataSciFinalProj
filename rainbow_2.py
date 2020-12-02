@@ -219,7 +219,7 @@ if __name__ == '__main__':
     n_step = 2
     render = False
 
-    env = gym.make('CartPole-v0')
+    env = gym.make('LunarLander-v2')
     env = env.unwrapped
     action_dim = env.action_space.n
     observation_dim = env.observation_space.shape[0]
