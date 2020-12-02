@@ -217,10 +217,12 @@ class DQNAgent:
         losses = []
         scores = []
         score = 0
+        episodes = 0
 
         for frame_idx in range(1, num_frames + 1):
             action = self.select_action(state)
             next_state, reward, done = self.step(action)
+            self.env.render()
 
             state = next_state
             score += reward
@@ -233,10 +235,12 @@ class DQNAgent:
 
             # if episode ends
             if done:
+                episodes += 1
                 state = self.env.reset()
                 scores.append(score)
-                print(f"Trial #{frame_idx}: Reward: {score}, Average over last 100 episodes: {np.mean(scores[-100:])}")
-
+                print(f"Trial #{episodes}: Reward: {score}, Average over last 100 episodes: {np.mean(scores[-100:])}")
+                if np.mean(scores[-100:]) > 200:
+                    print(f"############## EXCEEDED AVERAGE OF 200 AT EPISODE {episodes} ###########################")
                 score = 0
 
             # if training is ready
@@ -349,7 +353,7 @@ class DQNAgent:
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True' # MacOS issue workaround
 env = gym.make('LunarLander-v2')
 # parameters
-num_frames = 1000
+num_frames = 10000
 memory_size = 1000
 batch_size = 32
 target_update = 100
@@ -358,3 +362,5 @@ target_update = 100
 agent = DQNAgent(env, memory_size, batch_size, target_update)
 agent.train(num_frames)
 frames = agent.test()
+
+torch.save(agent.dqn, "RainbowDQN.pt")
