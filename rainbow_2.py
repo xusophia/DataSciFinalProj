@@ -234,7 +234,7 @@ if __name__ == '__main__':
     epsilon = epsilon_init
 
     for i in range(episode):
-        plt.scatter(i, reward[i])
+        plt.scatter(i, reward_total[i])
         obs = env.reset()
         reward_total = 0
         if render:
