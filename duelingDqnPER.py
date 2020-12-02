@@ -67,9 +67,9 @@ class DQN(nn.Module):
         pred = self.forward(torch.as_tensor(np.array(state)))
         action_mask = F.one_hot(torch.as_tensor(np.array(action, dtype=np.int64)), self.action_space_dim)
         pred = (pred * action_mask).sum(dim=-1)
-        loss = self.loss_fn(pred, target.detach()).detach().numpy()
+        error = torch.abs(pred-target).data
 
-        self.memory.append(loss, (state, action, reward, next_state, done))
+        self.memory.append(error, (state, action, reward, next_state, done))
 
     # def sample_buffer(self, num_samples):
     #     states, actions, rewards, next_states, dones = [], [], [], [], []
@@ -91,13 +91,14 @@ class DQN(nn.Module):
     
     def train_batch(self):
         mini_batch, idxs, is_weights = self.memory.sample(self.batch_size)
-        mini_batch = np.array(mini_batch).transpose()
-
-        states = np.vstack(mini_batch[0])
-        actions = list(mini_batch[1])
-        rewards = list(mini_batch[2])
-        next_states = np.vstack(mini_batch[3])
-        dones = mini_batch[4]
+        #mini_batch = np.array(mini_batch).transpose()
+        states, actions, rewards, next_states, dones = [], [], [], [], []
+        for i in mini_batch:
+            states.append(i[0])
+            actions.append(i[1])
+            rewards.append(i[2])
+            next_states.append(i[3])
+            dones.append(i[4])
 
         states = torch.as_tensor(np.array(states))
         actions = torch.as_tensor(np.array(actions, dtype=np.int64))
@@ -111,10 +112,11 @@ class DQN(nn.Module):
         action_masks = F.one_hot(actions, self.action_space_dim)
         preds = (preds * action_masks).sum(dim=-1)
         loss = self.loss_fn(preds, targets.detach())
+        errors = torch.abs(preds-targets).data.numpy()
         # update priority
         for i in range(self.batch_size):
             idx = idxs[i]
-            self.memory.update(idx, loss[i])
+            self.memory.update(idx, errors[i])
         self.optimizer.zero_grad() #zero out the gradients for weights of model
         loss.backward() #compute the gradient of loss with respect to model paramenters
         self.optimizer.step()
