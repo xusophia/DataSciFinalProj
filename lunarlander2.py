@@ -1,12 +1,11 @@
-import gym
-from VanillaDqn import DQN
+import gym 
+from duelingDqn import DQN
 import numpy as np
 import torch
-from gym.wrappers.monitoring.video_recorder import VideoRecorder
 import matplotlib.pyplot as plt
+
 env = gym.make('LunarLander-v2')
-# recorder = VideoRecorder(env, path='results/vanilladqn.mp4')
-episodes = 1000
+episodes = 50
 epsilon = 1.0
 gamma = 0.99
 buffer_size = 500000
@@ -14,16 +13,16 @@ counter = 0
 update_t = 5
 batch_size = 32
 lr = 1e-3
+
 network = DQN(env, lr = lr, gamma = gamma, epsilon = epsilon, buffer_size =buffer_size)
 reward_list_ep = []
 reward_last_100_eps = []
+
 for episode in range(episodes+1):
     state = env.reset().astype(np.float32)
     reward_ep, done = 0, False
-
     while not done:
-        env.unwrapped.render() # Comment this if you do not want rendering
-        #recorder.capture_frame()
+        #env.unwrapped.render() # Comment this if you do not want 
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
         next_state, reward, done, info = env.step(action)
@@ -59,8 +58,9 @@ fig = plt.figure(figsize=(20,10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/vanillaDQNscatter.png')
+plt.savefig('results/duelingDQNscatter.png')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/vanillaDQNplot.png')
+plt.savefig('results/duelingDQNplot.png')
+
