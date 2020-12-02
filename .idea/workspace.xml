@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ddc670a-ec51-4ea0-9639-5897aebcbf35" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/DoubleDQN.py" beforeDir="false" afterPath="$PROJECT_DIR$/DoubleDQN.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DDQN_Keras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d/setup.py" afterDir="false" />
     </list>
@@ -35,13 +35,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DoubleDQN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="137" selection-start-line="137" selection-end-line="137" />
+            <state relative-caret-position="36">
+              <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="56" />
               <folding>
                 <element signature="e#32#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DDQN_Keras.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-168">
+              <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,11 +107,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>if sys.plat</find>
-      <find>lunar</find>
       <find>act</find>
       <find>optim</find>
       <find>get_actoin</find>
       <find>state_tensor</find>
+      <find>observatoin</find>
+      <find>lunar</find>
+      <find>cart</find>
+      <find>action_space</find>
+      <find>action</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,6 +128,7 @@
         <option value="$PROJECT_DIR$/pybox2d/setup.py" />
         <option value="$PROJECT_DIR$/duelingDQN.py" />
         <option value="$PROJECT_DIR$/DoubleDQN.py" />
+        <option value="$PROJECT_DIR$/DDQN_Keras.py" />
       </list>
     </option>
   </component>
@@ -156,7 +173,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DoubleDQN">
+  <component name="RunManager" selected="Python.DDQN_Keras">
+    <configuration name="DDQN_Keras" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DataSciFinalProj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DDQN_Keras.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DoubleDQN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DataSciFinalProj" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,6 +260,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.DDQN_Keras" />
         <item itemvalue="Python.DoubleDQN" />
         <item itemvalue="Python.duelingDQN" />
         <item itemvalue="Python.testing" />
@@ -233,6 +272,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12483487" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -271,16 +311,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/duelingDQN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="204" selection-start-line="204" selection-end-line="204" selection-end-column="24" />
-          <folding>
-            <element signature="e#807#817#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/ProgramData/Anaconda3/envs/Sophia/Lib/site-packages/gym/core.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
@@ -309,12 +339,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/duelingDQN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="204" selection-start-line="204" selection-end-line="204" selection-end-column="24" />
+          <folding>
+            <element signature="e#807#817#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DoubleDQN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        <state relative-caret-position="36">
+          <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="56" />
           <folding>
             <element signature="e#32#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DDQN_Keras.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-168">
+          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
