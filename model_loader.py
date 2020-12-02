@@ -35,7 +35,7 @@ reward_ep, done = 0, False
 while not done:
     env.render() # Comment this if you do not want rendering
     state_tensor = torch.from_numpy(state)
-    action = my_model.get_action(state_tensor)
+    action = my_model.select_action(state_tensor)
     next_state, reward, done, info = env.step(action)
     next_state = next_state.astype(np.float32)
     reward_ep += reward
