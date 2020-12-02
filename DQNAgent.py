@@ -353,7 +353,7 @@ env = gym.make('LunarLander-v2')
 # parameters
 num_frames = 70000
 memory_size = 1000
-batch_size = 32
+batch_size = 64
 target_update = 100
 
 # train
