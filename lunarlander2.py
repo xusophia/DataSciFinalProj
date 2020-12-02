@@ -5,7 +5,7 @@ import torch
 import matplotlib.pyplot as plt
 
 env = gym.make('LunarLander-v2')
-episodes = 50
+episodes = 1000
 epsilon = 1.0
 gamma = 0.99
 buffer_size = 500000
@@ -22,7 +22,7 @@ for episode in range(episodes+1):
     state = env.reset().astype(np.float32)
     reward_ep, done = 0, False
     while not done:
-        #env.unwrapped.render() # Comment this if you do not want 
+        #env.unwrapped.render() # Comment this if you do not want
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
         next_state, reward, done, info = env.step(action)
@@ -39,7 +39,7 @@ for episode in range(episodes+1):
             loss = network.train_batch(states, actions, rewards, next_states, dones)
 
     if episode < 900:
-        network.epsilon*=network.epsilon_decay
+        network.epsilon *= network.epsilon_decay
     reward_list_ep.append(reward_ep)
 
     if len(reward_last_100_eps) == 100:
