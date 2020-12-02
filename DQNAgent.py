@@ -52,6 +52,7 @@ class DQNAgent:
             atom_size: int = 51,
             # N-step Learning
             n_step: int = 3,
+
     ):
         """Initialization.
         Args:
@@ -231,6 +232,7 @@ class DQNAgent:
             fraction = min(frame_idx / num_frames, 1.0)
             self.beta = self.beta + fraction * (1.0 - self.beta)
 
+
             # if episode ends
             if done:
                 episodes += 1
@@ -240,6 +242,8 @@ class DQNAgent:
                 if np.mean(scores[-100:]) > 200:
                     print(f"############## EXCEEDED AVERAGE OF 200 AT EPISODE {episodes} ###########################")
                 score = 0
+                list_episode.append(episodes)
+                list_scores.append(score)
 
             # if training is ready
             if len(self.memory) >= self.batch_size:
@@ -348,10 +352,13 @@ class DQNAgent:
         # plt.draw()
         # plt.show()
 
+
+list_episode = []
+list_scores =[]
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True' # MacOS issue workaround
 env = gym.make('LunarLander-v2')
 # parameters
-num_frames = 70000
+num_frames =  1000
 memory_size = 1000
 batch_size = 64
 target_update = 100
@@ -362,3 +369,8 @@ agent.train(num_frames)
 frames = agent.test()
 
 torch.save(agent, "RainbowDQN50000.pt")
+
+
+plt.scatter([i for i in range(list_episode, list_scores)])
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
