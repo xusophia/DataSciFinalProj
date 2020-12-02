@@ -361,4 +361,4 @@ agent = DQNAgent(env, memory_size, batch_size, target_update)
 agent.train(num_frames)
 frames = agent.test()
 
-torch.save(agent.dqn, "RainbowDQN.pt")
+torch.save(agent, "RainbowDQN50000.pt")
