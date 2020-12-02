@@ -22,6 +22,7 @@ class n_step_replay_buffer(object):
 
         for _, _, rew, next_obs, do in reversed(list(self.n_step_buffer)[: -1]):
             reward = reward * self.gamma * (1 - do) + rew
+            print("REWARD:" +reward)
             next_observation, done = (next_obs, do) if do else (next_observation, done)
 
         return reward, next_observation, done
