@@ -371,6 +371,9 @@ frames = agent.test()
 torch.save(agent, "RainbowDQN50000.pt")
 
 
-plt.scatter([i for i in range(list_episode, list_scores)])
+for i in range(len(list_episode)):
+    plt.scatter(i, list_scores(i));
+
+plt.show()
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
