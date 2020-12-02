@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import numpy as np
 import random
 import gym
+import matplotlib.pyplot as plt
 from collections import deque
 
 # an implement for rainbow dqn with double, dueling , noisy, c51(categorical/distribution), multi-step.
@@ -203,7 +204,7 @@ def train(eval_model, target_model, buffer, v_min, v_max, atoms_num, gamma, batc
 
 
 if __name__ == '__main__':
-    episode = 1000
+    episode = 100
     epsilon_init = 0.95
     epsilon_decay = 0.99
     epsilon_min = 0.01
@@ -233,6 +234,7 @@ if __name__ == '__main__':
     epsilon = epsilon_init
 
     for i in range(episode):
+        plt.scatter(i, reward[i])
         obs = env.reset()
         reward_total = 0
         if render:
@@ -257,3 +259,8 @@ if __name__ == '__main__':
                     weight_reward = 0.9 * weight_reward + 0.1 * reward_total
                 print('episode: {}  reward: {}  weight_reward: {:.3f}  epsilon: {:.2f}'.format(i+1, reward_total, weight_reward, epsilon))
                 break
+
+    plt.xlabel("Episodes")
+    plt.ylabel("Rewards")
+    plt.show()
+    plt.savefig('results/Rainbowplot.png')
