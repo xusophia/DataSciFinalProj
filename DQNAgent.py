@@ -241,9 +241,11 @@ class DQNAgent:
                 print(f"Trial #{episodes}: Reward: {score}, Average over last 100 episodes: {np.mean(scores[-100:])}")
                 if np.mean(scores[-100:]) > 200:
                     print(f"############## EXCEEDED AVERAGE OF 200 AT EPISODE {episodes} ###########################")
-                score = 0
                 list_episode.append(episodes)
                 list_scores.append(score)
+                score = 0
+
+
 
             # if training is ready
             if len(self.memory) >= self.batch_size:
