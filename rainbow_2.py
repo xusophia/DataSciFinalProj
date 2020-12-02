@@ -203,7 +203,7 @@ def train(eval_model, target_model, buffer, v_min, v_max, atoms_num, gamma, batc
 
 
 if __name__ == '__main__':
-    episode = 100000
+    episode = 1000
     epsilon_init = 0.95
     epsilon_decay = 0.99
     epsilon_min = 0.01
@@ -216,7 +216,7 @@ if __name__ == '__main__':
     batch_size = 64
     capacity = 10000
     exploration = 200
-    n_step = 2
+    n_step = 20
     render = False
 
     env = gym.make('LunarLander-v2')
