@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ddc670a-ec51-4ea0-9639-5897aebcbf35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DDQN_Keras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d/setup.py" afterDir="false" />
     </list>
@@ -38,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DoubleDQN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="56" />
+            <state relative-caret-position="138">
+              <caret line="36" column="57" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="57" />
               <folding>
                 <element signature="e#32#44#0" expanded="true" />
               </folding>
@@ -50,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DDQN_Keras.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-168">
-              <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+            <state relative-caret-position="-1579">
+              <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -114,8 +113,9 @@
       <find>observatoin</find>
       <find>lunar</find>
       <find>cart</find>
-      <find>action_space</find>
       <find>action</find>
+      <find>tupl</find>
+      <find>action_space</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -272,7 +272,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12483487" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -351,8 +350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DoubleDQN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="56" />
+        <state relative-caret-position="138">
+          <caret line="36" column="57" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="57" />
           <folding>
             <element signature="e#32#44#0" expanded="true" />
           </folding>
@@ -361,8 +360,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DDQN_Keras.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="-1579">
+          <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
