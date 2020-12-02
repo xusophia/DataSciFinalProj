@@ -375,7 +375,6 @@ torch.save(agent, "RainbowDQN50000.pt")
 
 for i in range(len(list_episode)):
     plt.plot(i, list_scores[i])
-
-plt.show()
+plt.figure()
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
