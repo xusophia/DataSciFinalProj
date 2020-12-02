@@ -147,7 +147,7 @@ class DQNAgent:
         next_state, reward, done, _ = self.env.step(action)
 
         # render the environment
-        self.env.render()
+        # self.env.render()
 
         if not self.is_test:
             self.transition += [reward, next_state, done]
@@ -235,6 +235,8 @@ class DQNAgent:
             if done:
                 state = self.env.reset()
                 scores.append(score)
+                print(f"Trial #{frame_idx}: Reward: {score}, Average over last 100 episodes: {np.mean(scores[-100:])}")
+
                 score = 0
 
             # if training is ready
@@ -333,21 +335,21 @@ class DQNAgent:
             losses: List[float],
     ):
         """Plot the training progresses."""
-        clear_output(True)
-        plt.figure(figsize=(20, 5))
-        plt.subplot(131)
-        plt.title('frame %s. score: %s' % (frame_idx, np.mean(scores[-10:])))
-        plt.plot(scores)
-        plt.subplot(132)
-        plt.title('loss')
-        plt.plot(losses)
-        plt.show()
+        # clear_output(True)
+        # plt.figure(figsize=(20, 5))
+        # plt.subplot(131)
+        # plt.title('frame %s. score: %s' % (frame_idx, np.mean(scores[-10:])))
+        # plt.plot(scores)
+        # plt.subplot(132)
+        # plt.title('loss')
+        # plt.plot(losses)
+        # plt.draw()
+        # plt.show()
 
-
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'True' # MacOS issue workaround
 env = gym.make('LunarLander-v2')
 # parameters
-num_frames = 20000
+num_frames = 1000
 memory_size = 1000
 batch_size = 32
 target_update = 100
