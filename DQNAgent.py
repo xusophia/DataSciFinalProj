@@ -351,7 +351,7 @@ class DQNAgent:
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True' # MacOS issue workaround
 env = gym.make('LunarLander-v2')
 # parameters
-num_frames = 30000
+num_frames = 40000
 memory_size = 1000
 batch_size = 32
 target_update = 100
