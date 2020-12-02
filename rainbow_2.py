@@ -257,7 +257,7 @@ if __name__ == '__main__':
                     weight_reward = reward_total
                 else:
                     weight_reward = 0.9 * weight_reward + 0.1 * reward_total
-                plt.plt(i, reward_total)
+                plt.plot(i, reward_total)
                 print('episode: {}  reward: {}  weight_reward: {:.3f}  epsilon: {:.2f}'.format(i+1, reward_total, weight_reward, epsilon))
                 break
 
