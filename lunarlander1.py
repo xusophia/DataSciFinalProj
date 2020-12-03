@@ -1,5 +1,6 @@
 import gym
 from VanillaDqn import DQN
+from DoubleDqn import DoubleDQN
 import numpy as np
 import torch
 
@@ -16,7 +17,7 @@ counter = 0
 update_t = 5
 batch_size = 32
 lr = 1e-3
-network = DQN(env, lr=lr, gamma=gamma, epsilon=epsilon, buffer_size=buffer_size)
+network = DoubleDQN(env, lr=lr, gamma=gamma, epsilon=epsilon, buffer_size=buffer_size)
 reward_list_ep = []
 reward_last_100_eps = []
 for episode in range(episodes + 1):
@@ -62,8 +63,18 @@ fig = plt.figure(figsize=(20, 10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/doubleDQNscatter.png')
+plt.savefig('results/doubleDQNscatter2.png')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/doubleDQNplot.png')
+plt.savefig('results/doubleDQNplot2.png')
+
+# fig = plt.figure(figsize=(20, 10))
+# plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+# plt.xlabel("Episodes")
+# plt.ylabel("Rewards")
+# plt.savefig('results/vanillaDQNscatter.png')
+# plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+# plt.xlabel("Episodes")
+# plt.ylabel("Rewards")
+# plt.savefig('results/vanillaDQNplot.png')
