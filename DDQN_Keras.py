@@ -21,13 +21,12 @@ MIN_MEMORY_FOR_EXPERIENCE_REPLAY = 300
 import gym
 env = gym.make('LunarLander-v2')
 OBSERVATION_SPACE_DIMS = env.observation_space.shape[0]
-ACTION_SPACE = [0,1]
 
 def create_dqn():
     # not actually that deep
     nn = Sequential()
     nn.add(Dense(512, input_dim=OBSERVATION_SPACE_DIMS, activation='relu'))
-    nn.add(Dense(512, activation='relu'))
+    nn.add(Dense(256, activation='relu'))
     nn.add(Dense(env.action_space.n, activation='linear'))
     nn.compile(loss='mse', optimizer=Adam(lr=ALPHA))
     return nn

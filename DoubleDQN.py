@@ -34,7 +34,9 @@ def make_dqn():
                           nn.ReLU(inplace = True),
                           nn.Linear(512, 256),
                           nn.ReLU(inplace = True),
-                          nn.Linear(256, env.action_space.n))
+                          nn.Linear(256, 128),
+                          nn.ReLU(inplace = True),
+                          nn.Linear(128, env.action_space.n))
     loss_function = nn.MSELoss # define MSE as the loss function
     optimizer = torch.optim.Adam(model.parameters(), lr = 0.0001)
     return model, loss_function, optimizer
