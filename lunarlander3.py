@@ -22,7 +22,7 @@ for episode in range(episodes+1):
     state = env.reset().astype(np.float32)
     reward_ep, done = 0, False
     while not done:
-        env.unwrapped.render() # Comment this if you do not want
+        #env.unwrapped.render() # Comment this if you do not want
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
         next_state, reward, done, info = env.step(action)
