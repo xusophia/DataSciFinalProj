@@ -26,8 +26,8 @@ ACTION_SPACE = [0,1]
 def create_dqn():
     # not actually that deep
     nn = Sequential()
-    nn.add(Dense(64, input_dim=OBSERVATION_SPACE_DIMS, activation='relu'))
-    nn.add(Dense(64, activation='relu'))
+    nn.add(Dense(512, input_dim=OBSERVATION_SPACE_DIMS, activation='relu'))
+    nn.add(Dense(512, activation='relu'))
     nn.add(Dense(env.action_space.n, activation='linear'))
     nn.compile(loss='mse', optimizer=Adam(lr=ALPHA))
     return nn
