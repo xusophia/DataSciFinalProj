@@ -6,19 +6,16 @@ import numpy as np
 import random
 from matplotlib import pyplot as plt
 
-
-
-
 # AGENT/NETWORK HYPERPARAMETERS
 EPSILON_INITIAL = 0.5 # exploration rate
 EPSILON_DECAY = 0.99
 EPSILON_MIN = 0.01
-ALPHA = 0.001 # learning rate
+ALPHA = 0.01 # learning rate
 GAMMA = 0.99 # discount factor
-TAU = 0.1 # target network soft update hyperparameter
+TAU = 0.05 # target network soft update hyperparameter
 EXPERIENCE_REPLAY_BATCH_SIZE = 32
-AGENT_MEMORY_LIMIT = 2000
-MIN_MEMORY_FOR_EXPERIENCE_REPLAY = 500
+AGENT_MEMORY_LIMIT = 1000
+MIN_MEMORY_FOR_EXPERIENCE_REPLAY = 300
 
 # LUNAR LANDING GAME SETTINGS
 import gym
