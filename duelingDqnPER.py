@@ -14,7 +14,7 @@ from torch.autograd import Variable
 #https://arxiv.org/pdf/1511.06581.pdf
 
 class DQN(nn.Module):
-    def __init__(self, env, lr=1e-4, gamma = 0.99, epsilon=1.0, epsilon_decay=0.995, buffer_size=500000):
+    def __init__(self, env, lr=1e-4, gamma = 0.99, epsilon=1.0, epsilon_decay=0.995, buffer_size=1000000):
         super(DQN, self).__init__()
         #input output dimensions
         self.state_space_dim = env.observation_space.shape[0]
@@ -111,7 +111,7 @@ class DQN(nn.Module):
         preds = self.forward(states)
         action_masks = F.one_hot(actions, self.action_space_dim)
         preds = (preds * action_masks).sum(dim=-1)
-        loss = self.loss_fn(preds, targets.detach())
+        loss = (torch.FloatTensor(is_weights) * self.loss_fn(preds, targets.detach())).mean()
         errors = torch.abs(preds-targets).data.numpy()
         # update priority
         for i in range(self.batch_size):
