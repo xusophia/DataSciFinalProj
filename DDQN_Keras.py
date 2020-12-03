@@ -110,7 +110,7 @@ def test_agent():
     env.seed(1)
     trials = []
     NUMBER_OF_TRIALS=10
-    MAX_TRAINING_EPISODES = 2000
+    MAX_TRAINING_EPISODES = 300
     MAX_STEPS_PER_EPISODE = 200
 
     for trial_index in range(NUMBER_OF_TRIALS):
