@@ -22,7 +22,7 @@ for episode in range(episodes+1):
     reward_ep, done = 0, False
 
     while not done:
-        env.unwrapped.render() # Comment this if you do not want rendering
+        #env.unwrapped.render() # Comment this if you do not want rendering
         #recorder.capture_frame()
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
@@ -55,12 +55,14 @@ for episode in range(episodes+1):
         break
 env.close()
 
-fig = plt.figure(figsize=(20,10))
-plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
-plt.xlabel("Episodes")
-plt.ylabel("Rewards")
-plt.savefig('results/vanillaDQNscatter.png')
-plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
-plt.xlabel("Episodes")
-plt.ylabel("Rewards")
-plt.savefig('results/vanillaDQNplot.png')
+PATH1 = 'saved/lunarlanderVanilla.pt'
+torch.save(network.state_dict(), PATH1)
+# fig = plt.figure(figsize=(20,10))
+# plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+# plt.xlabel("Episodes")
+# plt.ylabel("Rewards")
+# plt.savefig('results/vanillaDQNscatter.png')
+# plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+# plt.xlabel("Episodes")
+# plt.ylabel("Rewards")
+# plt.savefig('results/vanillaDQNplot.png')
