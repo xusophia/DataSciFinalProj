@@ -7,14 +7,14 @@ import random
 from itertools import count
 import torch.nn.functional as F
 from torch.autograd import Variable
-from prioritizedExperienceReplay import Memory
+from naivePrioritizedBuffer import NaivePrioritizedBuffer
 
 from torch.autograd import Variable
 
 #https://arxiv.org/pdf/1511.06581.pdf
 
 class DQN(nn.Module):
-    def __init__(self, env, lr=1e-4, gamma = 0.99, epsilon=1.0, epsilon_decay=0.995, buffer_size=500000):
+    def __init__(self, env, lr=1e-4, gamma = 0.99, epsilon=1.0, epsilon_decay=0.995, buffer_size=1000000):
         super(DQN, self).__init__()
         #input output dimensions
         self.state_space_dim = env.observation_space.shape[0]
@@ -33,9 +33,12 @@ class DQN(nn.Module):
         self.epsilon = epsilon
         self.epsilon_decay = epsilon_decay
         self.env = env
-        self.memory = Memory(buffer_size)
+        self.buffer = NaivePrioritizedBuffer(buffer_size, prob_alpha=0)
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
         self.loss_fn = nn.MSELoss()     #defining our loss function to be the MSE loss
+        
+        self.beta = 1#0.4
+        self.beta_increment = (1-self.beta)/1000
 
         self.batch_size = 32
 
@@ -63,13 +66,13 @@ class DQN(nn.Module):
         #reward = torch.as_tensor(np.array(reward, dtype=np.float32))
         #done = torch.as_tensor(np.array(done, dtype=np.float32))
         
-        target = reward + self.gamma * self.forward(torch.as_tensor(np.array(next_state))).max(-1).values * (1.0-done)
-        pred = self.forward(torch.as_tensor(np.array(state)))
-        action_mask = F.one_hot(torch.as_tensor(np.array(action, dtype=np.int64)), self.action_space_dim)
-        pred = (pred * action_mask).sum(dim=-1)
-        error = torch.abs(pred-target).data
+        # target = reward + self.gamma * self.forward(torch.as_tensor(np.array(next_state))).max(-1).values * (1.0-done)
+        # pred = self.forward(torch.as_tensor(np.array(state)))
+        # action_mask = F.one_hot(torch.as_tensor(np.array(action, dtype=np.int64)), self.action_space_dim)
+        # pred = (pred * action_mask).sum(dim=-1)
+        # error = torch.abs(pred-target).data
 
-        self.memory.append(error, (state, action, reward, next_state, done))
+        self.buffer.push(state, action, reward, next_state, done)
 
     # def sample_buffer(self, num_samples):
     #     states, actions, rewards, next_states, dones = [], [], [], [], []
@@ -90,33 +93,26 @@ class DQN(nn.Module):
     #     return states, actions, rewards, next_states, dones
     
     def train_batch(self):
-        mini_batch, idxs, is_weights = self.memory.sample(self.batch_size)
+        state, action, reward, next_state, done, indices, weights = self.buffer.sample(self.batch_size, self.beta) 
         #mini_batch = np.array(mini_batch).transpose()
-        states, actions, rewards, next_states, dones = [], [], [], [], []
-        for i in mini_batch:
-            states.append(i[0])
-            actions.append(i[1])
-            rewards.append(i[2])
-            next_states.append(i[3])
-            dones.append(i[4])
+        states     = Variable(torch.FloatTensor(np.float32(state)))
+        next_states = Variable(torch.FloatTensor(np.float32(next_state)))
+        actions     = Variable(torch.LongTensor(action))
+        rewards     = Variable(torch.FloatTensor(reward))
+        dones       = Variable(torch.FloatTensor(done))
+        weights    = Variable(torch.FloatTensor(weights))
 
-        states = torch.as_tensor(np.array(states))
-        actions = torch.as_tensor(np.array(actions, dtype=np.int64))
-        rewards = torch.as_tensor(np.array(rewards, dtype=np.float32))
-        next_states = torch.as_tensor(np.array(next_states))
-        dones = torch.as_tensor(np.array(dones, dtype=np.float32))
-
+        self.beta+=self.beta_increment
         # Bellman equation for updates
         targets = rewards + self.gamma * self.forward(next_states).max(-1).values * (1.0-dones)
         preds = self.forward(states)
         action_masks = F.one_hot(actions, self.action_space_dim)
         preds = (preds * action_masks).sum(dim=-1)
-        loss = self.loss_fn(preds, targets.detach())
-        errors = torch.abs(preds-targets).data.numpy()
+        loss  = (preds - targets.detach()).pow(2) * weights
+        prios = loss + 1e-5
+        loss  = loss.mean()
         # update priority
-        for i in range(self.batch_size):
-            idx = idxs[i]
-            self.memory.update(idx, errors[i])
+        self.buffer.update_priorities(indices, prios.data.numpy())
         self.optimizer.zero_grad() #zero out the gradients for weights of model
         loss.backward() #compute the gradient of loss with respect to model paramenters
         self.optimizer.step()

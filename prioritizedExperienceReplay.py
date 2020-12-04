@@ -1,7 +1,6 @@
 import random
 import numpy as np
 
-
 # SumTree
 # a binary tree data structure where the parent’s value is the sum of its children
 class SumTree:
@@ -69,8 +68,8 @@ class SumTree:
 class Memory:  # stored as ( s, a, r, s_ ) in SumTree
     e = 0.01
     a = 0.6
-    beta = 1 #0.4
-    beta_increment_per_sampling = 0 #0.001
+    beta = 0.4
+    beta_increment_per_sampling = (1-0.4)/1000
 
     def __init__(self, capacity):
         self.tree = SumTree(capacity)
@@ -101,11 +100,17 @@ class Memory:  # stored as ( s, a, r, s_ ) in SumTree
             batch.append(data)
             idxs.append(idx)
 
-        sampling_probabilities = priorities / self.tree.total()
-        is_weight = np.power(self.tree.n_entries * sampling_probabilities, -self.beta)
-        is_weight /= is_weight.max()
+        try:
+            sampling_probabilities = priorities / self.tree.total()
+            is_weight = np.power(self.tree.n_entries * sampling_probabilities, -self.beta)
+            is_weight /= is_weight.max()
+            return batch, idxs, is_weight
+        except:
+            print(self.tree.n_entries)
+            print(priorities)
+            print(self.tree.total())
 
-        return batch, idxs, is_weight
+
 
     def update(self, idx, error):
         p = self._get_priority(error)
