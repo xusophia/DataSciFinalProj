@@ -53,14 +53,15 @@ for episode in range(episodes+1):
     if last_rewards_mean>200:
         break
 env.close()
-
-fig = plt.figure(figsize=(20,10))
-plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
-plt.xlabel("Episodes")
-plt.ylabel("Rewards")
-plt.savefig('results/duelingDQNscatter.png')
-plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
-plt.xlabel("Episodes")
-plt.ylabel("Rewards")
-plt.savefig('results/duelingDQNplot.png')
+PATH1 = 'saved/lunarlanderDuel.pt'
+torch.save(network.state_dict(), PATH1)
+# fig = plt.figure(figsize=(20,10))
+# plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+# plt.xlabel("Episodes")
+# plt.ylabel("Rewards")
+# plt.savefig('results/duelingDQNscatter.png')
+# plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+# plt.xlabel("Episodes")
+# plt.ylabel("Rewards")
+# plt.savefig('results/duelingDQNplot.png')
 
