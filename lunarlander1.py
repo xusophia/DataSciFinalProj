@@ -2,6 +2,8 @@ import gym
 from VanillaDqn import DQN
 import numpy as np
 import torch
+import matplotlib.pyplot as plt
+
 env = gym.make('LunarLander-v2')
 episodes = 1000
 epsilon = 1.0
