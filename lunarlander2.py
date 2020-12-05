@@ -63,5 +63,5 @@ plt.savefig('DDQN - Wind 6')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('DDQN - Wind 6')
+plt.savefig('DDQN - Wind 62')
 
