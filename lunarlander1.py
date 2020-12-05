@@ -5,7 +5,7 @@ import torch
 import matplotlib.pyplot as plt
 
 env = gym.make('LunarLander-v2')
-episodes = 500
+episodes = 1000
 epsilon = 1.0
 gamma = 0.99
 buffer_size = 500000
@@ -55,8 +55,8 @@ fig = plt.figure(figsize=(20,10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('WIND- 3 way ')
+plt.savefig('WIND- 1000 ')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('WIND2 - 3 way ')
+plt.savefig('WIND2 - 1000  ')
