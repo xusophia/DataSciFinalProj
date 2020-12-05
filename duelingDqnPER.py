@@ -33,11 +33,11 @@ class DQN(nn.Module):
         self.epsilon = epsilon
         self.epsilon_decay = epsilon_decay
         self.env = env
-        self.buffer = NaivePrioritizedBuffer(buffer_size, prob_alpha=0)
+        self.buffer = NaivePrioritizedBuffer(buffer_size, prob_alpha=0.8)
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
         self.loss_fn = nn.MSELoss()     #defining our loss function to be the MSE loss
         
-        self.beta = 1#0.4
+        self.beta = 0.95#0.4
         self.beta_increment = (1-self.beta)/1000
 
         self.batch_size = 32
