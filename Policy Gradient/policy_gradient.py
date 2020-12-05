@@ -158,12 +158,8 @@ class PolicyGradient:
                     print('\nSolved!')
                     break
 
-        with open('rewards_log.txt', 'w') as filehandle:
+        with open('metrics/rewards_log.txt', 'w') as filehandle:
             for listitem in self.ep_rewards:
-                filehandle.write(f"{listitem}\n")
-        
-        with open('default_rewards_log.txt', 'w') as filehandle:
-            for listitem in self.total_rewards:
                 filehandle.write(f"{listitem}\n")
 
         # close the environment
