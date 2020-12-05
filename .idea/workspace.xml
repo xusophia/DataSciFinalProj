@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ddc670a-ec51-4ea0-9639-5897aebcbf35" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lunar_lander.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lunarlander_noise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d/setup.py" afterDir="false" />
     </list>
@@ -64,13 +67,49 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ddqn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="161" column="46" lean-forward="true" selection-start-line="161" selection-start-column="46" selection-end-line="161" selection-end-column="46" />
+            <state relative-caret-position="36">
+              <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Double_DQN.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="55" column="54" selection-start-line="55" selection-start-column="44" selection-end-line="55" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lunarlander_noise.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="69" column="20" lean-forward="true" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lunar_lander.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="427" column="38" lean-forward="true" selection-start-line="427" selection-start-column="38" selection-end-line="427" selection-end-column="38" />
+              <folding>
+                <element signature="e#1216#1232#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,6 +150,10 @@
       <find>2000</find>
       <find>episode_index</find>
       <find>lunar</find>
+      <find>0.001</find>
+      <find>render</find>
+      <find>observation</find>
+      <find>next_state</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -127,6 +170,9 @@
         <option value="$PROJECT_DIR$/DDQN_try2.py" />
         <option value="$PROJECT_DIR$/DDQN_Keras.py" />
         <option value="$PROJECT_DIR$/ddqn.py" />
+        <option value="$PROJECT_DIR$/Double_DQN.py" />
+        <option value="$PROJECT_DIR$/lunar_lander.py" />
+        <option value="$PROJECT_DIR$/lunarlander_noise.py" />
       </list>
     </option>
   </component>
@@ -171,7 +217,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Double_DQN">
+  <component name="RunManager" selected="Python.lunarlander_noise">
     <configuration name="DDQN_Keras" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DataSciFinalProj" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -206,27 +252,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DDQN_try2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="DoubleDQN" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="DataSciFinalProj" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DoubleDQN.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -277,13 +302,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="lunarlander_noise" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DataSciFinalProj" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lunarlander_noise.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.lunarlander_noise" />
         <item itemvalue="Python.Double_DQN" />
         <item itemvalue="Python.ddqn" />
         <item itemvalue="Python.DDQN_Keras" />
         <item itemvalue="Python.DDQN_try2" />
-        <item itemvalue="Python.DoubleDQN" />
       </list>
     </recent_temporary>
   </component>
@@ -292,6 +338,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1230" height="838" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15829146" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -444,8 +491,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ddqn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="161" column="46" lean-forward="true" selection-start-line="161" selection-start-column="46" selection-end-line="161" selection-end-column="46" />
+        <state relative-caret-position="36">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lunar_lander.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="427" column="38" lean-forward="true" selection-start-line="427" selection-start-column="38" selection-end-line="427" selection-end-column="38" />
+          <folding>
+            <element signature="e#1216#1232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Double_DQN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="55" column="54" selection-start-line="55" selection-start-column="44" selection-end-line="55" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lunarlander_noise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="69" column="20" lean-forward="true" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
