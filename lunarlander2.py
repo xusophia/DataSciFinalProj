@@ -5,7 +5,7 @@ import torch
 import matplotlib.pyplot as plt
 
 env = gym.make('LunarLander-v2')
-episodes = 1000
+episodes = 500
 epsilon = 1.0
 gamma = 0.99
 buffer_size = 500000
@@ -53,8 +53,8 @@ for episode in range(episodes+1):
     if last_rewards_mean>200:
         break
 env.close()
-PATH1 = 'saved/lunarlanderDuel.pt'
-torch.save(network.state_dict(), PATH1)
+# PATH1 = 'saved/lunarlanderDuel.pt'
+# torch.save(network.state_dict(), PATH1)
 fig = plt.figure(figsize=(20,10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
