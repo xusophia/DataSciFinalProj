@@ -22,10 +22,7 @@ reward_list_ep = []
 reward_last_100_eps = []
 for episode in range(episodes + 1):
     state = env.reset().astype(np.float32)
-    # Add Noise
-    state[0] += np.random.normal(loc=0,scale=0.05)
-    state[1] += np.random.normal(loc=0,scale=0.05)
-    state[4] += np.random.normal(loc=0,scale=0.05)
+
     reward_ep, done = 0, False
 
     while not done:
@@ -36,6 +33,10 @@ for episode in range(episodes + 1):
         action = network.get_action(state_tensor)
         next_state, reward, done, info = env.step(action)
         next_state = next_state.astype(np.float32)
+        # Add Noise
+        next_state[0] += np.random.normal(loc=0,scale=0.05)
+        next_state[1] += np.random.normal(loc=0,scale=0.05)
+        next_state[4] += np.random.normal(loc=0,scale=0.05)
         reward_ep += reward
         network.insert(state, action, reward, next_state, done)
         state = next_state
@@ -67,8 +68,8 @@ fig = plt.figure(figsize=(20, 10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('doubleDQNscatter_Noise.png')
+plt.savefig('doubleDQN_scatter_Noise.png')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('doubleDQNplot_Noise.png')
+plt.savefig('doubleDQN_plot_Noise.png')
