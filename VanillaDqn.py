@@ -76,3 +76,5 @@ class DQN(nn.Module):
         loss.backward() #compute the gradient of loss with respect to model paramenters
         self.optimizer.step()
         return loss
+
+
