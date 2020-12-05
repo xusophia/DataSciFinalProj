@@ -154,8 +154,8 @@ def update_parameters(current_model, target_model):
     target_model.load_state_dict(current_model.state_dict())
 
 
-def main(gamma=0.99, lr=1e-3, min_episodes=20, eps=1, eps_decay=0.995, eps_min=0.01, update_step=10, batch_size=64, update_repeats=50,
-         num_episodes=3000, seed=42, max_memory_size=50000, lr_gamma=0.9, lr_step=100, measure_step=100,
+def main(gamma=0.99, lr=1e-1, min_episodes=20, eps=1, eps_decay=0.995, eps_min=0.01, update_step=10, batch_size=64, update_repeats=50,
+         num_episodes=1500, seed=42, max_memory_size=50000, lr_gamma=0.9, lr_step=100, measure_step=100,
          measure_repeats=100, hidden_dim=64, env_name='LunarLander-v2', cnn=False, horizon=np.inf, render=True, render_step=50):
     """
     :param gamma: reward discount factor
@@ -207,6 +207,7 @@ def main(gamma=0.99, lr=1e-3, min_episodes=20, eps=1, eps_decay=0.995, eps_min=0
 
     memory = Memory(max_memory_size)
     performance = []
+    graph_rewards = []
 
     for episode in range(num_episodes):
         # display the performance
@@ -247,7 +248,12 @@ def main(gamma=0.99, lr=1e-3, min_episodes=20, eps=1, eps_decay=0.995, eps_min=0
         # update learning rate and eps
         scheduler.step()
         eps = max(eps*eps_decay, eps_min)
+        graph_rewards.append(evaluate(Q_1, env, measure_repeats))
 
+    plt.scatter([i for i in range(len(graph_rewards))], graph_rewards)
+    plt.xlabel("Episodes")
+    plt.ylabel("Rewards")
+    plt.savefig('results/DDQN_scatter.png')
     return Q_1, performance
 
 

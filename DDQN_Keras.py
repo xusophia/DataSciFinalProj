@@ -8,14 +8,14 @@ from matplotlib import pyplot as plt
 
 # AGENT/NETWORK HYPERPARAMETERS
 EPSILON_INITIAL = 0.5 # exploration rate
-EPSILON_DECAY = 0.99
-EPSILON_MIN = 0.01
-ALPHA = 0.01 # learning rate
+EPSILON_DECAY = 0.998
+EPSILON_MIN = 0
+ALPHA = 0.1 # learning rate
 GAMMA = 0.99 # discount factor
 TAU = 0.05 # target network soft update hyperparameter
 EXPERIENCE_REPLAY_BATCH_SIZE = 32
 AGENT_MEMORY_LIMIT = 1000
-MIN_MEMORY_FOR_EXPERIENCE_REPLAY = 300
+MIN_MEMORY_FOR_EXPERIENCE_REPLAY = 2 ** 6
 
 # LUNAR LANDING GAME SETTINGS
 import gym
@@ -25,9 +25,9 @@ OBSERVATION_SPACE_DIMS = env.observation_space.shape[0]
 def create_dqn():
     # not actually that deep
     nn = Sequential()
-    nn.add(Dense(512, input_dim=OBSERVATION_SPACE_DIMS, activation='relu'))
-    nn.add(Dense(256, activation='relu'))
-    nn.add(Dense(env.action_space.n, activation='linear'))
+    nn.add(Dense(128, input_dim=OBSERVATION_SPACE_DIMS, activation='relu'))
+    nn.add(Dense(64, activation='relu'))
+    nn.add(Dense(env.action_space.n, activation='relu'))
     nn.compile(loss='mse', optimizer=Adam(lr=ALPHA))
     return nn
 
@@ -106,9 +106,9 @@ class DoubleDQNAgent(object):
 
 def test_agent():
     env = gym.make('LunarLander-v2')
-    env.seed(1)
+    env.seed(42)
     trials = []
-    NUMBER_OF_TRIALS=10
+    NUMBER_OF_TRIALS=3
     MAX_TRAINING_EPISODES = 300
     MAX_STEPS_PER_EPISODE = 200
 
@@ -150,12 +150,12 @@ def plot_trials(trials):
     for i, trial in enumerate(trials):
         steps_till_solve = trial.shape[0]-100
         # stop trials at 2000 steps
-        if steps_till_solve < 1900:
+        if steps_till_solve < 1200:
             bar_color = 'b'
             bar_label = steps_till_solve
         else:
             bar_color = 'r'
-            bar_label = 'Stopped at 2000'
+            bar_label = 'Stopped at 1200'
         plt.bar(np.arange(i,i+1), steps_till_solve, 0.5, color=bar_color, align='center', alpha=0.5)
         axis.text(i-.25, steps_till_solve + 20, bar_label, color=bar_color)
 
@@ -180,6 +180,9 @@ def plot_individual_trial(trial):
 
 
 if __name__ == '__main__':
+    import gym
+    env = gym.make('LunarLander-v2')
+    OBSERVATION_SPACE_DIMS = env.observation_space.shape[0]
     trials = test_agent()
     # print 'Saving', file_name
     # np.save('double_dqn_cartpole_trials.npy', trials)

@@ -11,6 +11,7 @@ from tensorflow.keras.layers import Dense, Conv2D, Flatten, Input
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.initializers import he_normal
 from tensorflow.keras.callbacks import History
+import matplotlib.pyplot as plt
 
 
 # https://rubikscode.net/2020/01/27/double-dqn-with-tensorflow-2-and-tf-agents-2/
@@ -39,8 +40,8 @@ class ExperienceReplay:
         self._buffer.append((state, action, reward, next_state, terminated))
 
     def get_batch(self, batch_size):
-        if no_samples > len(self._samples):
-            return random.sample(self._buffer, len(self._samples))
+        if no_samples > len(self.samples):
+            return random.sample(self._buffer, len(self.samples))
         else:
             return random.sample(self._buffer, batch_size)
 
@@ -156,6 +157,7 @@ class AgentTrainer():
 
             # Initialize variables
             average_loss_per_episode = []
+            epoch_rewards = []
             average_loss = 0
             total_epoch_reward = 0
 
@@ -184,6 +186,13 @@ class AgentTrainer():
 
                 # Real Reward is always 1 for Cart-Pole enviroment
                 total_epoch_reward +=1
+            epoch_rewards.append(total_epoch_reward)
+        fig = plt.figure(figsize=(20,10))
+        plt.scatter([i for i in range(len(epoch_rewards))], epoch_rewards)
+        plt.xlabel("Episodes")
+        plt.ylabel("Rewards")
+        plt.savefig('results/DDQN_scatter.png')
+
 
 
 optimizer = Adam()
@@ -191,3 +200,4 @@ experience_replay = ExperienceReplay(50000)
 agent = DDQNAgent(experience_replay, NUM_STATES, NUM_ACTIONS, optimizer)
 agent_trainer = AgentTrainer(agent, enviroment)
 agent_trainer.train()
+

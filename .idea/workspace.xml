@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ddc670a-ec51-4ea0-9639-5897aebcbf35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DDQN_AnotherModel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ddqn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DDQN_Keras.py" beforeDir="false" afterPath="$PROJECT_DIR$/DDQN_Keras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DDQN_try2.py" beforeDir="false" afterPath="$PROJECT_DIR$/DDQN_try2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddqn.py" beforeDir="false" afterPath="$PROJECT_DIR$/ddqn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pybox2d/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pybox2d/setup.py" afterDir="false" />
     </list>
@@ -50,26 +49,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DDQN_Keras.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2295">
-              <caret line="21" column="30" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DDQN_try2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-986">
-              <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+            <state relative-caret-position="-2764">
+              <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ddqn.py">
+        <entry file="file://$PROJECT_DIR$/DDQN_try2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1137">
-              <caret line="132" column="7" lean-forward="true" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
+            <state relative-caret-position="-34">
+              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -77,36 +67,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Anaconda3/envs/Sophia/Lib/site-packages/gym/envs/classic_control/rendering.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ddqn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="164" selection-start-line="164" selection-end-line="164" />
+            <state relative-caret-position="223">
+              <caret line="161" column="46" lean-forward="true" selection-start-line="161" selection-start-column="46" selection-end-line="161" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Anaconda3/envs/Sophia/Lib/site-packages/tensorflow/python/keras/engine/input_spec.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="108" selection-start-line="108" selection-end-line="108" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Anaconda3/envs/Sophia/Lib/site-packages/tensorflow/python/keras/engine/base_layer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="537" selection-start-line="537" selection-end-line="537" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DDQN_AnotherModel.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -131,10 +101,19 @@
       <find>ACTION_SPACE</find>
       <find>action_space</find>
       <find>reward_last_100_eps</find>
-      <find>lunar</find>
       <find>expirience_replay</find>
       <find>_samples</find>
       <find>cart</find>
+      <find>_print_epoch_values</find>
+      <find>episode</find>
+      <find>3000</find>
+      <find>min_episodes</find>
+      <find>average_loss_per_episode</find>
+      <find>performance</find>
+      <find>self.</find>
+      <find>2000</find>
+      <find>episode_index</find>
+      <find>lunar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,17 +126,17 @@
         <option value="$PROJECT_DIR$/pybox2d/setup.py" />
         <option value="$PROJECT_DIR$/duelingDQN.py" />
         <option value="$PROJECT_DIR$/DoubleDQN.py" />
-        <option value="$PROJECT_DIR$/DDQN_Keras.py" />
         <option value="$PROJECT_DIR$/DDQN_AnotherModel.py" />
         <option value="$PROJECT_DIR$/DDQN_try2.py" />
+        <option value="$PROJECT_DIR$/DDQN_Keras.py" />
         <option value="$PROJECT_DIR$/ddqn.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="687" />
-    <option name="width" value="1242" />
-    <option name="height" value="1038" />
+    <option name="x" value="-9" />
+    <option name="width" value="1538" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -304,8 +283,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.ddqn" />
-        <item itemvalue="Python.DDQN_try2" />
         <item itemvalue="Python.DDQN_Keras" />
+        <item itemvalue="Python.DDQN_try2" />
         <item itemvalue="Python.DoubleDQN" />
         <item itemvalue="Python.duelingDQN" />
       </list>
@@ -315,22 +294,21 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="550" y="0" width="993" height="830" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1230" height="838" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19749217" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15829146" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5768025" visible="true" weight="0.33287483" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.57621443" visible="true" weight="0.3292517" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4993395" weight="0.3292517" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49867898" weight="0.3292517" />
       <window_info anchor="bottom" id="Educational.CheckDetails" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4980185" weight="0.3292517" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.42319748" side_tool="true" visible="true" weight="0.33287483" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.4237856" side_tool="true" visible="true" weight="0.3292517" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4993395" weight="0.3292517" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -409,9 +387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DDQN_AnotherModel.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/DoubleDQN.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -450,10 +425,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ddqn.py">
+    <entry file="file://$PROJECT_DIR$/DDQN_try2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1137">
-          <caret line="132" column="7" lean-forward="true" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
+        <state relative-caret-position="-34">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -462,15 +437,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DDQN_Keras.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2295">
-          <caret line="21" column="30" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="30" />
+        <state relative-caret-position="-2764">
+          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DDQN_try2.py">
+    <entry file="file://$PROJECT_DIR$/DDQN_AnotherModel.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ddqn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-986">
-          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        <state relative-caret-position="223">
+          <caret line="161" column="46" lean-forward="true" selection-start-line="161" selection-start-column="46" selection-end-line="161" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
