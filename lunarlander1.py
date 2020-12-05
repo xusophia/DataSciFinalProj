@@ -5,7 +5,7 @@ import torch
 import matplotlib.pyplot as plt
 
 env = gym.make('LunarLander-v2')
-episodes = 1000
+episodes = 500
 epsilon = 1.0
 gamma = 0.99
 buffer_size = 500000
