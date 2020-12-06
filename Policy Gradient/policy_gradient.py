@@ -75,7 +75,7 @@ class PolicyGradient:
         self.total_rewards = deque([], maxlen=100)
 
         # flag to figure out if we have render a single episode current epoch
-        self.finished_rendering_this_epoch = False
+        # self.finished_rendering_this_epoch = False
 
     def solve_environment(self):
         """
@@ -114,7 +114,7 @@ class PolicyGradient:
             if episode >= self.BATCH_SIZE:
 
                 # reset the rendering flag
-                self.finished_rendering_this_epoch = False
+                # self.finished_rendering_this_epoch = False
 
                 # reset the episode count
                 episode = 0
@@ -191,8 +191,8 @@ class PolicyGradient:
         while True:
 
             # render the environment for the first episode in the epoch
-            if not self.finished_rendering_this_epoch:
-                self.env.render()
+            # if not self.finished_rendering_this_epoch:
+                # self.env.render()
 
             # get the action logits from the agent - (preferences)
             action_logits = self.agent(torch.tensor(state).float().unsqueeze(dim=0).to(self.DEVICE))
@@ -250,7 +250,7 @@ class PolicyGradient:
                 sum_weighted_log_probs = torch.sum(episode_weighted_log_probs).unsqueeze(dim=0)
 
                 # won't render again this epoch
-                self.finished_rendering_this_epoch = True
+                # self.finished_rendering_this_epoch = True
 
                 return sum_weighted_log_probs, episode_logits, sum_of_rewards, episode
 
