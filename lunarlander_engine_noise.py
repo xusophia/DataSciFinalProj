@@ -3,6 +3,7 @@ from VanillaDqn import DQN
 from DoubleDqn import DoubleDQN
 import numpy as np
 import torch
+from action_noise import action_noise
 
 from gym.wrappers.monitoring.video_recorder import VideoRecorder
 import matplotlib.pyplot as plt
@@ -31,8 +32,7 @@ for episode in range(episodes + 1):
         # recorder.capture_frame()
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
-        if np.random.randint(0, 10) < 2:
-            action = 0
+        action = action_noise(action)
         next_state, reward, done, info = env.step(action)
         next_state = next_state.astype(np.float32)
         reward_ep += reward
