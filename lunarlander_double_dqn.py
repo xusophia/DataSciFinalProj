@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 env = gym.make('LunarLander-v2')
 # recorder = VideoRecorder(env, path='results/vanilladqn.mp4')
-episodes = 1000
+episodes = 500
 epsilon = 1.0
 gamma = 0.99
 buffer_size = 500000
@@ -60,17 +60,17 @@ for episode in range(episodes + 1):
         break
 env.close()
 
-PATH1 = 'saved/lunarlanderDouble.pt'
-torch.save(network.state_dict(), PATH1)
+# PATH1 = 'saved/lunarlanderDouble.pt'
+# torch.save(network.state_dict(), PATH1)
 # fig = plt.figure(figsize=(20, 10))
-# plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
-# plt.xlabel("Episodes")
-# plt.ylabel("Rewards")
-# plt.savefig('results/doubleDQNscatter2.png')
-# plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
-# plt.xlabel("Episodes")
-# plt.ylabel("Rewards")
-# plt.savefig('results/doubleDQNplot2.png')
+plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('DoubleDQNscatter - Wind_divided_by_3.png')
+plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('DoubleDQNscatter - Wind_divided_by_3_plt')
 
 # fig = plt.figure(figsize=(20, 10))
 # plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
