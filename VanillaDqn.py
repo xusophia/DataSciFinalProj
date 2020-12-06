@@ -22,6 +22,7 @@ class DQN(nn.Module):
         #our state-action function estimator
         self.quant = torch.quantization.QuantStub()
 
+        self.relu = torch.nn.ReLU()
         self.model = Sequential(
 
             nn.Linear(self.state_space_dim, 512),
