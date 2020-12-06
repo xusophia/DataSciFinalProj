@@ -31,8 +31,20 @@ class DoubleDQN(nn.Module):
             nn.ReLU(),
             nn.Linear(256, self.action_space_dim)
         )
-        self.local_net = model
-        self.target_net = model
+        self.local_net = Sequential(
+            nn.Linear(self.state_space_dim, 512),
+            nn.ReLU(),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            nn.Linear(256, self.action_space_dim)
+        )
+        self.target_net = Sequential(
+            nn.Linear(self.state_space_dim, 512),
+            nn.ReLU(),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            nn.Linear(256, self.action_space_dim)
+        )
 
         self.lr = lr
         self.gamma = gamma

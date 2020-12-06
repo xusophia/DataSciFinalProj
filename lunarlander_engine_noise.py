@@ -17,9 +17,10 @@ counter = 0
 update_t = 5
 batch_size = 32
 lr = 1e-3
-network = DoubleDQN(env, lr=lr, gamma=gamma, epsilon=epsilon, buffer_size=buffer_size)
+network = DQN(env, lr=lr, gamma=gamma, epsilon=epsilon, buffer_size=buffer_size)
 reward_list_ep = []
 reward_last_100_eps = []
+
 for episode in range(episodes + 1):
     state = env.reset().astype(np.float32)
     reward_ep, done = 0, False
@@ -30,6 +31,8 @@ for episode in range(episodes + 1):
         # recorder.capture_frame()
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
+        if np.random.randint(0, 10) < 2:
+            action = 0
         next_state, reward, done, info = env.step(action)
         next_state = next_state.astype(np.float32)
         reward_ep += reward
@@ -63,11 +66,11 @@ fig = plt.figure(figsize=(20, 10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/doubleDQNscatter2.png')
+plt.savefig('results/vanillaDQNscatterEngineNoise.png')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/doubleDQNplot2.png')
+plt.savefig('results/vanillaDQNplotEngineNoise.png')
 
 # fig = plt.figure(figsize=(20, 10))
 # plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
