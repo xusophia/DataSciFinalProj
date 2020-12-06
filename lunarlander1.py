@@ -75,7 +75,7 @@ network_fp32.qconfig  = torch.quantization.get_default_qat_qconfig('fbgemm')
 # network_fp32_fused = torch.quantization.fuse_modules(network_fp32, ['relu'])
 # Prepare the model for QAT. This inserts observers and fake_quants in
 # the model that will observe weight and activation tensors during calibration.
-network_fp32_prepared = torch.quantization.prepare_qat(network_fp32)
+network_fp32_prepared = torch.quantization.prepare(network_fp32)
 
 
 # run the training loop again
