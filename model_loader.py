@@ -5,6 +5,7 @@ import numpy as np
 import torch
 from VanillaDqn import DQN
 from DoubleDqn import DoubleDQN
+from duelingDqn import DuelingDQN
 
 env = gym.make('LunarLander-v2')
 env.seed(0)
@@ -20,10 +21,12 @@ lr = 1e-3
 # double_network = DoubleDQN(env, lr=lr, gamma=gamma, epsilon=0.06, buffer_size=buffer_size)
 dueling_network = DuelingDQN(env, lr=lr, gamma=gamma, epsilon=0.06, buffer_size=buffer_size)
 # my_model = models.load_model("def_DQN.h5")
-van_network.load_state_dict(torch.load("saved/lunarlanderVanilla.pt"))
-van_network.eval()
-double_network.load_state_dict(torch.load("saved/lunarlanderDouble.pt"))
-double_network.eval()
+# van_network.load_state_dict(torch.load("saved/lunarlanderVanilla.pt"))
+# van_network.eval()
+# double_network.load_state_dict(torch.load("saved/lunarlanderDouble.pt"))
+# double_network.eval()
+dueling_network.load_state_dict(torch.load("saved/lunarlanderDuel.pt"))
+dueling_network.eval()
 
 
 # state = env.reset()
@@ -69,20 +72,27 @@ def run_model(network, noise=False):
     return reward_list
 
 
-ideal_vanilla = run_model(van_network, noise=False)
+# ideal_vanilla = run_model(van_network, noise=False)
 # ideal_double = run_model(double_network, noise=False)
-noise_vanilla = run_model(van_network, noise=True)
+# noise_vanilla = run_model(van_network, noise=True)
 # noise_double = run_model(double_network, noise=True)
 
+ideal_dueling = run_model(dueling_network, noise=False)
+noise_dueling = run_model(dueling_network, noise=True)
+
 fig = plt.figure(figsize=(20, 10))
-plt.plot([i for i in range(len(ideal_vanilla))], ideal_vanilla, 'y', label="ideal vanilla")
+# plt.plot([i for i in range(len(ideal_vanilla))], ideal_vanilla, 'y', label="ideal vanilla")
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
 
 # plt.plot([i for i in range(len(ideal_double))], ideal_double, 'g', label="ideal double")
 
-plt.plot([i for i in range(len(noise_vanilla))], noise_vanilla, 'r', label="vanilla in noise")
+# plt.plot([i for i in range(len(noise_vanilla))], noise_vanilla, 'r', label="vanilla in noise")
 
 # plt.plot([i for i in range(len(noise_double))], noise_double, 'b', label="double in noise")
+
+plt.plot([i for i in range(len(ideal_dueling))], ideal_dueling, 'g', label="ideal double")
+
+plt.plot([i for i in range(len(noise_dueling))], noise_dueling, 'r', label="vanilla in noise")
 plt.legend(loc="upper left")
 plt.savefig('results/idealInNoisyDueling.png')
