@@ -9,12 +9,12 @@ from torch.utils.tensorboard import SummaryWriter
 from collections import deque
 import argparse
 
-from environment import add_input_noise
-from metrics.training_record_plot import generate_training_plot
+from environment import add_input_noise, add_action_noise
+from training_record_plot import generate_training_plot
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--env', help='Can select 3 possible environments: engine-failure, wind, or input-noise', type=str)
+parser.add_argument('--env', help='Can select 3 possible environments: engine-noise, wind, or input-noise', type=str)
 parser.add_argument('--use_cuda', help='Use if you want to use CUDA', action='store_true')
 
 
@@ -96,7 +96,7 @@ class PolicyGradient:
         epoch_logits = torch.empty(size=(0, self.env.action_space.n), device=self.DEVICE)
         epoch_weighted_log_probs = torch.empty(size=(0,), dtype=torch.float, device=self.DEVICE)
 
-        while True:
+        while epoch < 50:
 
             # play an episode of the environment
             (episode_weighted_log_prob_trajectory,
@@ -211,6 +211,9 @@ class PolicyGradient:
             # sample an action according to the action distribution
             action = Categorical(logits=action_logits).sample()
 
+            if self.environment_type == "engine-noise":
+                action = add_action_noise(action)
+
             # append the action to the episode action list to obtain the trajectory
             # we need to store the actions and logits so we could calculate the gradient of the performance
             episode_actions = torch.cat((episode_actions, action), dim=0)
@@ -309,7 +312,6 @@ def main():
     args = parser.parse_args()
     env = args.env
     use_cuda = args.use_cuda
-    # TODO: add variable for selecting the environment
 
     policy_gradient = PolicyGradient(problem='LunarLander', environment_type=env, use_cuda=use_cuda)
     policy_gradient.solve_environment()

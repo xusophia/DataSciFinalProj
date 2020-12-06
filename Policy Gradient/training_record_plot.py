@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-
 def generate_training_plot(environment_type: str):
     training_record = []
 
@@ -21,4 +20,4 @@ def generate_training_plot(environment_type: str):
     plt.ylabel('Learning Performance')
     plt.plot(df_training_record['Episode'], df_training_record['Reward'], '-o')
     plt.show()
-    fig.savefig(f"metrics/{environment_type}_training_record.jpeg", format='jpeg', dpi=400, bbox_inches='tight')
+    fig.savefig(f"metrics/{environment_type}_training_record.png", format='png', dpi=400, bbox_inches='tight')
