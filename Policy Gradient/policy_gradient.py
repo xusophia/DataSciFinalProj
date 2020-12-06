@@ -9,8 +9,12 @@ from torch.utils.tensorboard import SummaryWriter
 from collections import deque
 import argparse
 
+from environment import add_input_noise
+from metrics.training_record_plot import generate_training_plot
+
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--env', help='LunarLander OpenAI gym environment', type=str)
+parser.add_argument('--env', help='Can select 3 possible environments: engine-failure, wind, or input-noise', type=str)
 parser.add_argument('--use_cuda', help='Use if you want to use CUDA', action='store_true')
 
 
@@ -43,7 +47,7 @@ class Agent(nn.Module):
 
 
 class PolicyGradient:
-    def __init__(self, problem: str = "CartPole", use_cuda: bool = False):
+    def __init__(self, problem: str = "LunarLander", environment_type: str = "", use_cuda: bool = False):
 
         self.NUM_EPOCHS = Params.NUM_EPOCHS
         self.ALPHA = Params.ALPHA
@@ -52,6 +56,8 @@ class PolicyGradient:
         self.HIDDEN_SIZE = Params.HIDDEN_SIZE
         self.BETA = Params.BETA
         self.DEVICE = torch.device('cuda' if torch.cuda.is_available() and use_cuda else 'cpu')
+        # environment
+        self.environment_type = environment_type
         # For stats
         self.ep_rewards = []
 
@@ -63,7 +69,7 @@ class PolicyGradient:
                                             f'BETA={self.BETA}')
 
         # create the environment
-        self.env = gym.make('CartPole-v1') if problem == "CartPole" else gym.make('LunarLander-v2')
+        self.env = gym.make('LunarLander-v2')
 
         # the agent driven by a neural network architecture
         self.agent = Agent(observation_space_size=self.env.observation_space.shape[0],
@@ -158,9 +164,11 @@ class PolicyGradient:
                     print('\nSolved!')
                     break
 
-        with open('metrics/rewards_log.txt', 'w') as filehandle:
+        with open(f'metrics/{self.environment_type}_training_record.txt', 'w') as filehandle:
             for listitem in self.ep_rewards:
                 filehandle.write(f"{listitem}\n")
+            
+        generate_training_plot(self.environment_type)
 
         # close the environment
         self.env.close()
@@ -192,7 +200,7 @@ class PolicyGradient:
 
             # render the environment for the first episode in the epoch
             # if not self.finished_rendering_this_epoch:
-                # self.env.render()
+            #     self.env.render()
 
             # get the action logits from the agent - (preferences)
             action_logits = self.agent(torch.tensor(state).float().unsqueeze(dim=0).to(self.DEVICE))
@@ -209,6 +217,10 @@ class PolicyGradient:
 
             # take the chosen action, observe the reward and the next state
             state, reward, done, _ = self.env.step(action=action.cpu().item())
+
+            # add input noise to next state if environment type is "input-noise"
+            if self.environment_type == "input-noise":
+                state = add_input_noise(state)
 
             # append the reward to the rewards pool that we collect during the episode
             # we need the rewards so we can calculate the weights for the policy gradient
@@ -297,10 +309,9 @@ def main():
     args = parser.parse_args()
     env = args.env
     use_cuda = args.use_cuda
+    # TODO: add variable for selecting the environment
 
-    assert(env in ['LunarLander'])
-
-    policy_gradient = PolicyGradient(problem=env, use_cuda=use_cuda)
+    policy_gradient = PolicyGradient(problem='LunarLander', environment_type=env, use_cuda=use_cuda)
     policy_gradient.solve_environment()
 
 

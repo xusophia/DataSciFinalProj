@@ -6,4 +6,4 @@ Also, the model uses policy `entropy bonus` and state-specific `baseline`.
 #### Run
 
 1. Install dependencies: numpy, pandas, gym, pytorch, pybox2d
-2. Run `python policy_gradient.py --env LunarLander`
+2. Run `python policy_gradient.py` for standard environment, `python policy_gradient.py --env input-noise` for Gaussian sensor input noise environment
