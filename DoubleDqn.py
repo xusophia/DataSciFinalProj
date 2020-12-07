@@ -49,7 +49,7 @@ class DoubleDQN(nn.Module):
         # updates the weights of the model after computing gradients
         self.optimizer = torch.optim.Adam(self.local_net.parameters(), lr=self.lr)
 
-        self.copy = 2 # Copy the local model weights into the target network every 2 steps
+        self.copy = 3 # Copy the local model weights into the target network every 2 steps
         self.step = 0
 
         self.loss_fn = nn.MSELoss()  # defining our loss function to be the MSE loss
