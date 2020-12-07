@@ -20,7 +20,7 @@ batch_size = 32
 lr = 1e-3
 # duel_network = duelingDqn.DQN(env, lr = lr, gamma = gamma, epsilon = 0.03, buffer_size =buffer_size)
 # duel_noise_network = duelingDqn.DQN(env, lr = lr, gamma = gamma, epsilon = 0.01, buffer_size =buffer_size)
-# # my_model = models.load_model("def_DQN.h5")
+# my_model = models.load_model("def_DQN.h5")
 # duel_network.load_state_dict(torch.load("saved/lunarlanderDuel.pt"))
 # duel_network.eval()
 # duel_noise_network.load_state_dict(torch.load("saved/lunarlander_Duel_noise_0.5.pt"))
@@ -50,7 +50,7 @@ def run_model(network, noise = False):
         state = env.reset().astype(np.float32)
         reward_ep, done = 0, False
         while not done:
-            env.render() # Comment this if you do not want rendering
+            # env.render() # Comment this if you do not want rendering
             state_tensor = torch.from_numpy(state)
             action = network.get_action(state_tensor)
             next_state, reward, done, info = env.step(action)

@@ -1,23 +1,12 @@
-# File for Quantization of Models
-
-import torch.quantization
-import torch.nn as nn
-from vanilla import DQN
+'''Vanilla DQN training in clear environment'''
 import gym
+from VanillaDqn import DQN
 import numpy as np
-import os
+import torch
+from gym.wrappers.monitoring.video_recorder import VideoRecorder
+import matplotlib.pyplot as plt
 env = gym.make('LunarLander-v2')
-env.seed(0)
-np.random.seed(0)
-
-
-gamma = 0.99
-buffer_size = 500000
-counter = 0
-update_t = 5
-batch_size = 32
-lr = 1e-3
-
+# recorder = VideoRecorder(env, path='results/vanilladqn.mp4')
 episodes = 1000
 epsilon = 1.0
 gamma = 0.99
@@ -67,29 +56,15 @@ for episode in range(episodes+1):
     if last_rewards_mean>200:
         break
 env.close()
-quantized_model = torch.quantization.quantize_dynamic(network, {nn.Linear}, dtype=torch.qint8)
-print(quantized_model)
-def print_size_of_model(model):
-    torch.save(model.state_dict(), "temp.p")
-    print('Size (MB):', os.path.getsize("temp.p")/1e6)
-    os.remove('temp.p')
 
-print('Size of Original Vanilla DQN:')
-print_size_of_model(network)
-print_size_of_model(quantized_model)
-
-from model_loader import run_model
-result = run_model(quantized_model)
-
-env.close()
-
-from matplotlib import pyplot as plt
+PATH1 = 'saved/lunarlanderVanilla.pt'
+torch.save(network.state_dict(), PATH1)
 fig = plt.figure(figsize=(20,10))
-plt.plot([i for i in range(len(result))], result, 'y', label="Quantized Vanilla DQN")
+plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('vanillaDQNplot_Quantized.png')
-
-
-
-
+plt.savefig('results/vanillaDQNscatter.png')
+plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('results/vanillaDQNplot.png')
