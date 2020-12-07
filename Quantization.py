@@ -29,20 +29,25 @@ lr = 1e-3
 network = DQN(env, lr = lr, gamma = gamma, epsilon = epsilon, buffer_size =buffer_size)
 reward_list_ep = []
 reward_last_100_eps = []
+import tensorflow as tf
 for episode in range(episodes+1):
-    state = env.reset().astype(np.float32)
+    state = env.reset().astype(np.int8)
     reward_ep, done = 0, False
 
     while not done:
-        #env.unwrapped.render() # Comment this if you do not want rendering
+        env.unwrapped.render() # Comment this if you do not want rendering
         #recorder.capture_frame()
         state_tensor = torch.from_numpy(state)
+        # state_tensor = state_tensor.byte()
+        state_tensor = state_tensor.type(dtype = int8)
+        print(type(state_tensor))
+        # x = x.type(torch.ByteTensor)
         action = network.get_action(state_tensor)
         #modify here so that action returned is taken only 80% of time and 20% action is set to 0(or the value that means nothing)
         next_state, reward, done, info = env.step(action)
-        next_state = next_state.astype(np.float32)
+        next_state = next_state.astype(np.int8)
         reward_ep += reward
-        network.insert(state, action, reward, next_state, done)
+        network.insert(state.astype(np.float32), action, reward, next_state.astype(np.float32), done)
         state = next_state
 
         counter += 1
