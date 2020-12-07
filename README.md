@@ -300,11 +300,11 @@ GIFS HERE
 
 Overall, a problem like this can be framed as a Partially Observable Markov Decision Process., which helps to calculate the expected utility of each action. However, because lunar landing presents a continuous space, this does become a complex problem to model.
 
-#### Action Noise - Engine Failure
+### Action Noise - Engine Failure
 
 This modification was created to simulate engine failure. In the Lunar Lander environment the ship has four possible actions: turn off all engines (0), turn on right engine (1), turn on bottom engine (2), and turn on left engine (3). To create noise that simulates a real-world scenario the chosen action is taken 80% of the time and an engine failure happens 20% of the time i.e. chosen action is replaced with all engines off (0). To test the robustness, we followed the same methodology we employed when testing in environments with sensor noise. We used two agents for each of our DQN variants, one trained in an ideal environment (no engine failure) and the other in a noisy environment (20% engine failure).
 
-##### Training in Noisy Environment - 20% Engine Failure
+#### Training in Noisy Environment - 20% Engine Failure
 As can be seen in the plots below, all three of the DQN variants were not able to reach the 200 average score threshold. Double DQN was the closest at 185 while both Vanilla and Duelling DQNs at around 170. The average is brought down by the high variance. The Vanilla and Duelling DQN agents several more episodes at a higher magnitude loss reward making their average scores lower than the Double DQN agent. In contrast, the Vanilla Policy Gradient model actually performed worse with more episodes, where the model was actively picking lower and lower rewards every episode. This suggests that our model may be overfitting or having bias introduced to its episodic rewards. In any case, it appears that in environments with random engine failure, VPG is a much less stable model in comparison to the DQN models. 
 
 Overall, this suggests that not only is the Double DQN model the best in an ideal setting it is also more robust in dealing with this type of noise. This possibly could be due to the higher stability of periodic updates to the target Q-values during training and as a result generalizing the state-action values more accurately than models that constantly update target Q-values.
@@ -325,7 +325,7 @@ Vanilla Policy Gradient:
 
 graph
 
-##### Action Noise Robustness Comparisons
+#### Action Noise Robustness Comparisons
 Below are the plots for agents trained with and without noise in a noisy environment for a 100 episodes.
 
 Vanilla DQN:
