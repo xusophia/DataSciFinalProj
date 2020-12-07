@@ -296,7 +296,7 @@ To hypothesize, dueling is able to perform better because of its ability to deco
 
 When investigated visually, we noticed that the lander that has been trained in the noisy environment sacrifices speed for more conservative and careful actions. The agent trained in an ideal setting, however, tends to perform very quick actions with high confidence which leads to poorer performance in a noisy environment.  
 
-<GIFS HERE>
+GIFS HERE
 
 Overall, a problem like this can be framed as a Partially Observable Markov Decision Process., which helps to calculate the expected utility of each action. However, because lunar landing presents a continuous space, this does become a complex problem to model.
 
