@@ -168,7 +168,7 @@ class PolicyGradient:
             for listitem in self.ep_rewards:
                 filehandle.write(f"{listitem}\n")
             
-        generate_training_plot(self.environment_type)
+        generate_training_plot(f"{self.environment_type}_training_record")
 
         # close the environment
         self.env.close()
