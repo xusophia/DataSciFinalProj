@@ -96,7 +96,7 @@ class PolicyGradient:
         epoch_logits = torch.empty(size=(0, self.env.action_space.n), device=self.DEVICE)
         epoch_weighted_log_probs = torch.empty(size=(0,), dtype=torch.float, device=self.DEVICE)
 
-        while epoch < 50:
+        while True:
 
             # play an episode of the environment
             (episode_weighted_log_prob_trajectory,
