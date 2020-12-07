@@ -24,13 +24,6 @@ class DoubleDQN(nn.Module):
 
         # our state-action function estimator
 
-        model = Sequential(
-            nn.Linear(self.state_space_dim, 512),
-            nn.ReLU(),
-            nn.Linear(512, 256),
-            nn.ReLU(),
-            nn.Linear(256, self.action_space_dim)
-        )
         self.local_net = Sequential(
             nn.Linear(self.state_space_dim, 512),
             nn.ReLU(),
@@ -38,6 +31,7 @@ class DoubleDQN(nn.Module):
             nn.ReLU(),
             nn.Linear(256, self.action_space_dim)
         )
+
         self.target_net = Sequential(
             nn.Linear(self.state_space_dim, 512),
             nn.ReLU(),
@@ -45,7 +39,6 @@ class DoubleDQN(nn.Module):
             nn.ReLU(),
             nn.Linear(256, self.action_space_dim)
         )
-
         self.lr = lr
         self.gamma = gamma
         self.epsilon = epsilon
@@ -56,7 +49,7 @@ class DoubleDQN(nn.Module):
         # updates the weights of the model after computing gradients
         self.optimizer = torch.optim.Adam(self.local_net.parameters(), lr=self.lr)
 
-        self.copy = 5000  # Copy the local model weights into the target network every 5000 steps
+        self.copy = 3 # Copy the local model weights into the target network every 2 steps
         self.step = 0
 
         self.loss_fn = nn.MSELoss()  # defining our loss function to be the MSE loss
@@ -64,6 +57,7 @@ class DoubleDQN(nn.Module):
     def copy_model(self):
         # Copy local net weights into target net
         self.target_net.load_state_dict(self.local_net.state_dict())
+        self.target_net.eval()
 
     def insert(self, state, action, reward, next_state, done):
         self.buffer.append((state, action, reward, next_state, done))
