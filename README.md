@@ -50,7 +50,7 @@ In a reinforcement learning environment, sequential states are strongly correlat
 
 <insert network architecture picture here>
 
-## Models
+## Models <br/>
 ### Vanilla DQN (Standard DQN)
 Vanilla DQN is our baseline model that utilizes the above network to learn the state Q-values. We compute the loss and update the weights every 5 iterations with a batch size of 32. Our future value discount rate, gamma, is 0.99. The learning results are as follows:
 
