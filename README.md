@@ -153,7 +153,7 @@ Then, we take a sample mean of the discounted rewards of all the trajectories in
 
 Finally, we define our policy gradient to be optimized as the gradient of our rewards performance:
 
-<img src="https://latex.codecogs.com/gif.latex?\triangledown _{\Theta}J(\pi)=\triangledown _{\Theta}\mathbb{E}_{\tau\sim\pi}[R(\tau)]"/>
+<img src="https://latex.codecogs.com/gif.latex?\triangledown_{\Theta}J(\pi)=\triangledown_{\Theta}\mathbb{E}_{\tau\sim\pi}[R(\tau)]"/>
 
 Lastly, VPG is known as an “on-policy” method. This means that the algorithm chooses to try and find an unbiased sample of its policy gradient, which means that the trajectories must be sampled from the current policy. This differs from “off-policy” methods like DQN, as DQN can also use experiences gained from previous policies.
 
