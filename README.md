@@ -25,17 +25,21 @@ Reinforcement Learning problems can be framed as Markov Decision Processes (MDPs
 
 <img src="https://latex.codecogs.com/gif.latex?Q^{\ast}(s,a)=\mathbb{E}_{s^{'}\sim\varepsilon}[r+\gamma{max_{a^{'}}Q^{*}(s^{'},a^{'})}|s,a]"/>
 
+
 The optimal action-state value is the current reward and the discounted maximum future reward possible. In the case of finite discrete input spaces, the number of Q values to compute would be finite and can be solved iteratively in a dynamic programming styled approach:
 
 <img src="https://latex.codecogs.com/gif.latex?Q_{i+1}(s,a)=\mathbb{E}[r+\gamma{max_{a^{'}}Q_{i}(s^{'},a^{'})}|s,a],{}\lim_{i\rightarrow{\infty}}Q_{i}=Q^{\ast}"/>
+
 
 However, when the state representation is continuous, as is in our case, maintaining a Q-table would need infinite space. This is where Neural networks come in as function approximators to estimate the action-value function:
 
 <img src="https://latex.codecogs.com/gif.latex?Q(s,a;\theta)\approx{Q_{\ast}(s,a)}"/>
 
+
 The neural network is trained by minimizing the Mean-Squared Error (MSE) loss for the function:
 
 <img src="https://latex.codecogs.com/gif.latex?L_{i}(\theta_{i})=\mathbb{E}_{s,a\sim{p(\cdot)}}[(y_{i}-Q(s,a;\theta_{i}))_{2}]"/>
+
 
 where <img src="https://latex.codecogs.com/gif.latex?y_{i}=\mathbb{E}_{s^{'}\sim\varepsilon}[r+\gamma{max_{a^{'}}Q(s^{'},a^{'};\theta_{i-1})}|s,a]"/>
 
@@ -50,7 +54,7 @@ In a reinforcement learning environment, sequential states are strongly correlat
 
 <insert network architecture picture here>
 
-## Models <br/>
+## Models
 ### Vanilla DQN (Standard DQN)
 Vanilla DQN is our baseline model that utilizes the above network to learn the state Q-values. We compute the loss and update the weights every 5 iterations with a batch size of 32. Our future value discount rate, gamma, is 0.99. The learning results are as follows:
 
@@ -91,9 +95,11 @@ The sampling probability will be proportional to the loss obtained after the for
 
 <img src="https://latex.codecogs.com/gif.latex?P(i)=\frac{p_{i}^{\alpha}}{\Sigma_{k}p_{k}^{\alpha}}"/>
 
+
 where pi is the priority of the experience i, and 𝛼 determines the degree of prioritization. (𝛼 = 0 if uniform). Meanwhile, the weight of experience i is defined by the equation:
 
 <img src="https://latex.codecogs.com/gif.latex?w_{i}=(\frac{1}{N}\cdot{\frac{1}{P(i)}})^{\beta}"/>
+
 
 where N is the total number of experiences and 𝛽 is used for the purposes of annealing the amount of importance-sampling correction over time, linearly arriving at 1 by the end of the learning.
 
@@ -118,11 +124,13 @@ Double Q-Learning attempts to correct overestimation bias present in the standar
 
 <img src="https://latex.codecogs.com/gif.latex?(R_{t+1}+\gamma_{t+1}{q_{\bar{\theta}}}(S_{t+1},argmax_{a^{'}}q_{\bar{\theta}}(S_{t+1},a^{'}))-q_{\theta}(S_{t},A_{t}))^{2}"/>
 
+
 Prioritized experience replay is used to identify important transitions from the replay buffer - typically, DQN samples from the replay buffer uniformly. (see previous section on prioritized experience replay)
 
 Rainbow also uses a dueling network architecture (see section on Dueling DQN). Multi-step learning utilizes a n-step return versus a singular return value at each iteration, as defined below:
 
 <img src="https://latex.codecogs.com/gif.latex?R_{t}^{(n)}\equiv{\sum_{k=0}^{n-1}}\gamma_{t}^{(k)}R_{t+k+1}"/>
+
 
 Multi step learning, when selecting the correct n, is used to reduce training time.
 
@@ -141,11 +149,13 @@ The Policy Gradient is found as follows. To start, the trajectory (defined as ta
 
 <img src="https://latex.codecogs.com/gif.latex?(a_{0},r_{0},a_{1},r_{1},...)"/>
 
+
 Next, we need to sum the rewards of the trajectory, which are given a discount rate defined to be 0.99 our model. The discount rate is applied due to higher benefits from applying it to tasks of episodic nature. In our model, we make a slight adjustment in summing the rewards, by only summing the discounted rewards from the time t until the end of the episode instead of from the very beginning. This is known as Rewards-To-Go, which says that actions committed after a time t should not affect rewards obtained prior to time t.
 
 <img src="https://latex.codecogs.com/gif.latex?R(\tau)=\sum_{t=0}^{T}\gamma^{t}r_{t}"/>
 
 <img src="https://latex.codecogs.com/gif.latex?R(\tau)-\sum_{t'=t}^{T-1}\gamma^{t}r_{t}"/>
+
 
 Then, we take a sample mean of the discounted rewards of all the trajectories in a single batch. In our case, we use a batch size of 64, which means running 64 episodes and thus 64 trajectories:
 
@@ -154,6 +164,7 @@ Then, we take a sample mean of the discounted rewards of all the trajectories in
 Finally, we define our policy gradient to be optimized as the gradient of our rewards performance:
 
 <img src="https://latex.codecogs.com/gif.latex?\triangledown_{\Theta}J(\pi)=\triangledown_{\Theta}\mathbb{E}_{\tau\sim\pi}[R(\tau)]"/>
+
 
 Lastly, VPG is known as an “on-policy” method. This means that the algorithm chooses to try and find an unbiased sample of its policy gradient, which means that the trajectories must be sampled from the current policy. This differs from “off-policy” methods like DQN, as DQN can also use experiences gained from previous policies.
 
@@ -342,6 +353,7 @@ Another thing we tried is Quantized Reinforcement Learning, which is the process
 To do this, quantization of our Vanilla DQN model using float32s was quantized to a model using int8s, which is lower precision data, resulting in a possible difference in accuracy. The quantization formula is as follows: 
 
 <img src="https://latex.codecogs.com/gif.latex?x_{int8}=\frac{x_{float}}{x_{scale}}+x_{offset}"/>
+
 
 Pytorch [has a library](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) that provides the quantization of tensors, mapping the original floating point based tensors to quantized tensors. The method for quantization used in our project was using Dynamic Quantization, which converts the activations to int8s dynamically, allowing for efficient int8 multiplication and convolution, but this method means that activations and read/written from/to memory in floating point. 
 
