@@ -55,15 +55,15 @@ for episode in range(episodes+1):
     if last_rewards_mean>200:
         break
 env.close()
-PATH1 = 'saved/lunarlander_van_noise_0.1.pt'
+PATH1 = 'saved/lunarlander_van_noise_0.5.pt'
 torch.save(network.state_dict(), PATH1)
 fig = plt.figure(figsize=(20,10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/van_noise_0.1_scatter.png')
+plt.savefig('results/van_noise_0.5_scatter.png')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/van_noise_0.1_plot.png')
+plt.savefig('results/van_noise_0.5_plot.png')
 
