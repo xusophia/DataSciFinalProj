@@ -692,11 +692,11 @@ COMPILER_SUPPORTS_AVX512:INTERNAL=1
 //STRINGS property for variable: FBGEMM_LIBRARY_TYPE
 FBGEMM_LIBRARY_TYPE-STRINGS:INTERNAL=default;static;shared
 //Details about finding OpenMP
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][TRUE][c ][v4.5()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][TRUE][c ][v()]
 //Details about finding OpenMP_C
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-fopenmp][/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/libgomp.dll.a][v4.5()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-fopenmp][/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/libgomp.dll.a][v()]
 //Details about finding OpenMP_CXX
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp][/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/libgomp.dll.a][v4.5()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp][/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/libgomp.dll.a][v()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/usr/bin/python][v2.7.16()]
 //Details about finding Threads
@@ -750,5 +750,5 @@ ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
 //CHECK_TYPE_SIZE: sizeof(void*)
 SIZE_OF_VOIDP:INTERNAL=8
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 

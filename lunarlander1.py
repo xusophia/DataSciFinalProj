@@ -6,6 +6,8 @@ from gym.wrappers.monitoring.video_recorder import VideoRecorder
 import matplotlib.pyplot as plt
 env = gym.make('LunarLander-v2')
 
+# import torchbackend
+
 from model_loader import run_model
 
 # recorder = VideoRecorder(env, path='results/vanilladqn.mp4')
@@ -28,6 +30,7 @@ qconfig = torch.quantization.get_default_qconfig('fbgemm')
 
 qconfig = torch.quantization.get_default_qat_qconfig('fbgemm')
 # torch.backends.quantized.engine = 'qnnpack'
+# torch.backends.quantized.engine='fbgemm'
 
 
 print(torch.backends.quantized.supported_engines)
@@ -121,7 +124,7 @@ network_fp32_prepared = torch.quantization.prepare(network_fp32)
 # used with each activation tensor, fuses modules where appropriate,
 # and replaces key operators with quantized implementations.
 network_fp32_prepared.eval()
-network_int8 = torch.quantization.convert(network_fp32_prepared)
+network_int8 = torch.quantization.convert(network_fp32_prepared, inplace = True)
 
 # run the model, relevant calculations will happen in int8
 from model_loader import run_model
@@ -133,8 +136,8 @@ fig = plt.figure(figsize=(20,10))
 plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/vanillaDQNscatter.png')
+# plt.savefig('results/vanillaDQNscatter.png')
 plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/vanillaDQNplot.png')
+# plt.savefig('results/vanillaDQNplot.png')
