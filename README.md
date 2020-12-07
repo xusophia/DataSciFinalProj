@@ -52,17 +52,17 @@ For our exploration in DQNs, we employ the epsilon-greedy strategy with epsilon 
 ### Experience Replay - Batch Learning
 In a reinforcement learning environment, sequential states are strongly correlated. This is especially true for the lander. The actions the lander would take at one moment is strongly correlated to the actions it takes in the near future and past. Therefore, it is more efficient to train the network in batches sampled uniformly from a memory of experiences containing state-action-reward-next-state tuples. Moreover, online Q-learning runs the risk of near-sightedness which could get stuck in a local minimum.
 
-<insert network architecture picture here>
+insert network architecture picture here
 
 ## Models
 ### Vanilla DQN (Standard DQN)
 Vanilla DQN is our baseline model that utilizes the above network to learn the state Q-values. We compute the loss and update the weights every 5 iterations with a batch size of 32. Our future value discount rate, gamma, is 0.99. The learning results are as follows:
 
-<graph>
+graph
   
 The 200 average score threshold is reached at around 660 episodes. The model has learned the environment successfully as demonstrated by its ability to land and turn off the engine in the video below:
 
-<Insert video>
+Insert video
 
 ### Double DQN
 After implementing the DQN, we moved on to trying the Double DQN model. For background, a popular problem of the previous algorithm of DQN models is the overestimation of the action value, or Q-value. Instead, the algorithm of Double Q-Learning solves the problem of overestimating the action value, or the Q-value. This algorithm utilizes two action-value functions as estimators.
@@ -81,6 +81,7 @@ The advantage of the Dueling DQN is its ability to learn the value of the states
 The key part of the architecture, the aggregating module (for the two streams), implements the forward mapping:
 
 <img src="https://latex.codecogs.com/gif.latex?Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta)+(A(s,a;\theta,\alpha)-max_{a^{'}\epsilon{|A|}}A(s,a^{'};\theta,\alpha))"/>
+
 
 where V is the state value and A is the advantage.
 
