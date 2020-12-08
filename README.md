@@ -56,7 +56,8 @@ For our exploration in DQNs, we employ the epsilon-greedy strategy with epsilon 
 ### Experience Replay - Batch Learning
 In a reinforcement learning environment, sequential states are strongly correlated. This is especially true for the lander. The actions the lander would take at one moment is strongly correlated to the actions it takes in the near future and past. Therefore, it is more efficient to train the network in batches sampled uniformly from a memory of experiences containing state-action-reward-next-state tuples. Moreover, online Q-learning runs the risk of near-sightedness which could get stuck in a local minimum.
 
-insert network architecture picture here
+## Neural Network Architecture
+<img src="results/vanilladiagram.png"/>
 
 ## Models
 ### Vanilla DQN (Standard DQN)
@@ -85,7 +86,11 @@ graphs
 ### Dueling DQN
 The Dueling DQN is an alternative variation of the standard vanilla DQN utilizing a novel dueling architecture. This structure utilizes two separate streams to explicitly separate the representation of state values and state-dependent action advantages.The two streams represent the value and advantage functions, and share a common convolutional feature learning module (Wang et al.).
 
-The advantage of the Dueling DQN is its ability to learn the value of the states without the need to learn the effect of each action for each of these states. The main application for this is in scenarios where the states’ actions do not affect the environment in any way. This is applicable to Lunar Lander, as in many states the choice of action for the moon lander (its movement or trajectory) does not matter for the environment
+The advantage of the Dueling DQN is its ability to learn the value of the states without the need to learn the effect of each action for each of these states. The main application for this is in scenarios where the states’ actions do not affect the environment in any way. This is applicable to Lunar Lander, as in many states the choice of action for the moon lander (its movement or trajectory) does not matter for the environment.
+
+The diagram for the architecture is as follows:
+
+<img src="results/duelingdiargram.png"/>
 
 The key part of the architecture, the aggregating module (for the two streams), implements the forward mapping:
 
