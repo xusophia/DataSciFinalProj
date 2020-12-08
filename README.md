@@ -319,7 +319,7 @@ Double DQN:
 
 Dueling DQN:
 
-![graph](/results/duelingDQNscatterEngineNoise.png "Dueling") 
+![graph](/results/duelingDQNscatterEngineNoise2.png "Dueling") 
 
 Vanilla Policy Gradient:
 
