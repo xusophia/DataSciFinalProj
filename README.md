@@ -15,7 +15,7 @@ The benchmark for winning the game is 200 points.
 
 An example of the game in action is shown below:
 
-(Sophia's GIFs here)
+<img src="results/Rest.gif"/>
 
 The above landing would have earned +100 points for coming to rest with ground contact for both legs.
 
@@ -67,9 +67,15 @@ The 200 average score threshold is reached at around 660 episodes. The model has
 
 
 ### Double DQN
-After implementing the DQN, we moved on to trying the Double DQN model. For background, a popular problem of the previous algorithm of DQN models is the overestimation of the action value, or Q-value. Instead, the algorithm of Double Q-Learning solves the problem of overestimating the action value, or the Q-value. This algorithm utilizes two action-value functions as estimators.
+After implementing the DQN, we moved on to trying the Double DQN model. For background, a popular problem of the previous algorithm of DQN models is the overestimation of the action value, or Q-value. Instead, the algorithm of Double Q-Learning solves the problem of overestimating the action value, or the Q-value. This algorithm utilizes two action-value functions as estimators. The main difference between the Vanilla DQN and the Double DQN is the target equation, which is as follows:
+
+CHANGE IT HERE IDK
+
+
 
 We follow [this algorithm](insert link)
+
+
 
 When applied to Lunar Lander it performed very well and had significant advantages over Vanilla DQN. As can be seen in the plots below, there were fewer outliers than for Vanilla DQN making the Double DQN’s more robust. In addition, the 200 average score threshold is reached at around 425 episodes which is faster than with the Vanilla DQN.
 
