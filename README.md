@@ -262,6 +262,18 @@ Double DQN training with sensor noise ~ N(u=0, sigma = 0.5):
 
 graph
 
+Our Vanilla Policy Gradient agent was able to cross the 200 point benchmark for zero-mean noise with sigma = 0.05 at roughly 5200 episodes. In comparison to the DQN agents, VPG required nearly ten times the number of episodes to reach our reward benchmark. This can be attributed to VPG’s architecture, since “on-policy” methods learn from its trajectory (action and rewards) on its current policy gradient, rather than learning from different actions in the case of DQNs. VPG also appears to reduce its variance more on its path to convergence in comparison to DQNs. This suggests that although VPG requires more episodes, it increases in stability compared to DQNs as it reaches convergence.
+
+Vanilla Policy Gradient training with sensor noise ~ N(u=0, sigma = 0.05):
+
+graph
+
+Interestingly, even with a noise standard deviation of 0.5, VPG was able to converge in roughly 5200 episodes. This contrasts from DQNs, which were unable to converge in the same number of episodes (or at all) for both noise standard deviations. The results suggest that VPG is much less affected by sensor noise, as well as being a more stable model toward convergence. Again, we also observe a tighter reward spread as episodes go on, suggesting increased stability as it nears convergence as well.
+
+Vanilla Policy Gradient training with sensor noise ~ N(u=0, sigma = 0.5):
+
+graph
+
 #### Sensor Noise Robustness Comparisons
 The following are the plots for agents trained with and without noise running in a noisy environment for 100 episodes:
 
@@ -324,9 +336,6 @@ Dueling DQN:
 
 <img src="results/duelingDQNscatterEngineNoise2.png"> 
 
-Vanilla Policy Gradient:
-
-graph
 
 #### Action Noise Robustness Comparisons
 Below are the plots for agents trained with and without noise in a noisy environment for a 100 episodes.
@@ -343,9 +352,6 @@ Dueling DQN:
 
 <img src="results/idealVsNoisyDueling2.png"/>
 
-Vanilla Policy Gradient:
-
-graph
 
 In all cases, the models trained in an ideal environment outperformed those trained in a noisy environment. This is because of the high variance and long spikes towards high negative reward for the agents trained in noise. This is consistent with these agents’ performance in training since high variance in training is what stopped them from reaching the 200 average score threshold. VPG also showed the greatest bias toward negative rewards, making it the worst performer of our models. The Double DQN has the closest performance between the one trained in noise and the one without which makes sense because it had the lowest variance when training with noise. 
 
