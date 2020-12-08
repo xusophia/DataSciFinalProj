@@ -413,8 +413,8 @@ We achieved the following results of quantizing a (Vanilla) DQN to a Quantized D
 
 | Model                  | Vanilla     | Dueling     |
 | ---------------------- | ----------- | ----------- |
-| Original Model Memory  | 0.550315 MB | 0.143911 MB |
-| Quantized Model Memory | 1.077843 MB | 0.278775 MB |
+| Original Model Memory  | 0.550315 MB | 1.077843 MB |
+| Quantized Model Memory | 0.143911 MB | 0.278775 MB |
 
 As seen from the table above, quantizing the networks results in a memory decrease by about a factor of 5, which shows promising results if model complexity or computation increases.
 
