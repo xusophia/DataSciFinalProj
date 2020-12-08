@@ -190,6 +190,7 @@ In order to create some turbulence, a function called ApplyForceToCenter, which 
 After creating the wind, four models were tested on this new environment: Vanilla DQN, Double DQN, Dueling DQN, and Policy Gradient since they provided the best results. When training the models, most of them were trained on 500 episodes, since by this point it was evident whether the graph was converging or not. Based on the graphs and results obtained the models did a great job training on this new environment. Furthermore Dueling did the best since it was already starting to converge at episode 300-500, while Vanilla and Double DQN, took a bit longer to get to the point of convergence.
 
 These are the graphs for each type of Engine Power:
+
 **Main Engine Power /3:** The Vanilla DQN, and Double DQN were around 0 rewards for the 500 episodes, however Dueling DQN was much better with more positive range rewards as can be seen from the three graphs:
 
 * Vanilla: Vanilla required 1000 episodes in order for the convergence to be seen, thus out of all the graphs, Vanilla DQN has 1000 episodes
