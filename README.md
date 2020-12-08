@@ -87,7 +87,7 @@ where V is the state value and A is the advantage.
 
 When applied to Lunar Lander, the Dueling DQN performed rather phenomenally. As seen in the scatter and stem plots below, an average score of greater than 200 was achieved in just less than 500 episodes. The fast convergence was accompanied by a more robustness; there is a significant decrease in performance outliers when compared to the plots of the standard Vanilla DQN.
 
-graphs
+<img src="results/duelingDQNscatter.png"/>
 
 ### Prioritized Experience Replay
 Prioritized Experience Replay, though another variation of the standard DQN, implements a completely different approach that that of the Dueling DQN. Normally, all experiences are equally weighted and thus uniformly sampled. Prioritized Experience Replay aims to prioritize certain experiences to improve the learning process and replay important transitions more frequently (Schaul et al.).
@@ -104,9 +104,11 @@ where pi is the priority of the experience i, and 𝛼 determines the degree of 
 
 where N is the total number of experiences and 𝛽 is used for the purposes of annealing the amount of importance-sampling correction over time, linearly arriving at 1 by the end of the learning.
 
-In the context of Lunar Lander, Prioritized Experience Replay was implemented on top of the Dueling DQN architecture yet did not perform as well as even the standard Vanilla DQN. Various combinations of 𝛼 and 𝛽 were used, starting from the baseline 𝛼 = 0.4 and 𝛽 = 0.6. The best performance recorded was at 𝛼 = 0.6 and 𝛽 = 0.95, with the best 100 episode average score of 190.04, recorded with the following code, scatter and stem plots:
+In the context of Lunar Lander, Prioritized Experience Replay was implemented on top of the Dueling DQN architecture yet did not perform as well as even the standard Vanilla DQN. Various combinations of 𝛼 and 𝛽 were used, starting from the baseline 𝛼 = 0.4 and 𝛽 = 0.6. The best performance recorded was at 𝛼 = 0.6 and 𝛽 = 0.95, with the best 100 episode average score of 190.04, recorded with the following code and plot:
 
-code and graphs
+<img src="results/CodeResultsPER.png"/>
+
+<img src="results/duelingperDQNscatter.png"/>
 
 The model was able to stabilize by approximately episode 800, but continuously oscillated and never broke a 100-episode average of greater than 200, even by the hard 1000 episode limit. The graphs also show some pretty volatile behavior, with a good number of sudden, drastic drops in performance even near the end.
 
