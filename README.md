@@ -80,7 +80,7 @@ The advantage of the Dueling DQN is its ability to learn the value of the states
 
 The key part of the architecture, the aggregating module (for the two streams), implements the forward mapping:
 
-<img src="https://latex.codecogs.com/gif.latex?Q(s,a;\theta,\alpha,\beta) = V(s;\theta,\beta)+(A(s,a;\theta,\alpha)-max_{a^{'}\epsilon{|A|}}A(s,a^{'};\theta,\alpha))"/>
+<img src="https://latex.codecogs.com/gif.latex?Q(s,a;\theta,\alpha,\beta)=V(s;\theta,\beta)+(A(s,a;\theta,\alpha)-max_{a^{'}\epsilon{|A|}}A(s,a^{'};\theta,\alpha))"/>
 
 
 where V is the state value and A is the advantage.
