@@ -1,6 +1,8 @@
-# LunarLander - Reinforcement Learning
+# Deep Reinforcement Learning for Lunar Landing
 
 Final project for EE460J Data Science Lab
+By Niruti Dhoble, Jianchen Gu, Indhu Gunda, Shreyas Kudari, Isaac Lee, Sophia Xu, and Kory Yang
+
 
 @TODO: DEFINE DQN and VPG acronyms just for clarity somewhere
 
@@ -377,10 +379,13 @@ Pytorch [has a library](https://pytorch.org/blog/introduction-to-quantization-on
 
 We achieved the following results of quantizing a (Vanilla) DQN to a Quantized DQN using int8:
 
-| Model            | DQN (Floating Point) | Quantized DQN (int8) |
-| ---------------- | -------------------- | -------------------- |
-| Memory Size (MB) | 0.550315 MB          | 0.143911             |
-|                  |                      |                      |
+| Model                  | Vanilla     | Dueling     |
+| ---------------------- | ----------- | ----------- |
+| Original Model Memory  | 0.550315 MB | 0.143911 MB |
+| Quantized Model Memory | 1.077843 MB | 0.278775 MB |
+
+As seen from the table above, quantizing the networks results in a memory decrease by about a factor of 5, which shows promising results if model complexity or computation increases.
+
 
 # WIP
 
