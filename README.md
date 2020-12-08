@@ -406,3 +406,26 @@ We achieved the following results of quantizing a (Vanilla) DQN to a Quantized D
 As seen from the table above, quantizing the networks results in a memory decrease by about a factor of 5, which shows promising results if model complexity or computation increases.
 
 ## Conclusions
+Several variations of the Vanilla DQN were implemented, including the Double DQN, Dueling DQN, Prioritized Experience Replay, Rainbow DQN (a combined model of multiple DQN approaches), and even a Vanilla Policy Gradient. Each model presented distinct processes, advantages, and disadvantages that were recorded and analyzed in the context of Lunar Lander. These models were then implemented and tested in further developments of the project.
+
+A creative aspect of the project was changing the environment and rerunning the models. The three changes to the environment were: Turbulence, Sensor noise, and action noise.
+For Turbulence, Double and Dueling DQN worked the best. We tried Turbulence Force = Main Engine Power /3 and Turbulence Force = Main Engine Power/6, both of which produced similar results.  A possible reason the Dueling DQN worked well is because the model was able to differentiate between state and action values which led the model to learn efficiently. 
+
+Dueling and Double DQNs were able to tackle sensor noise of relatively high magnitudes (standard deviation = 0.5) and stood out as robust. The Double and Dueling DQNs were slower and more conservative in solving the problem when trained in a noisy environment. It was interesting to see how the agents changed priorities when new factors influenced the training.
+
+Double DQN was the best model in an ideal environment and the pretrained ideal model worked the best in an environment with 20% engine failures. Double DQN most likely performed so well because it effectively generalized the state-action pairs since the target Q values are only updated periodically.
+
+Vanilla Policy Gradient was able to learn to cross the threshold in all of our environments, except for the 20% engine failure case where it actively performed worse. However, convergence for VPG did require significantly more episodes in training, but this is most likely attributed to Policy Gradient architecture. Finally, VPG did show some of the lowest variances in comparison to DQNs, when our agent reached convergence at +200 everage rewards.
+
+## References
+Vanilla DQN: https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf 
+Rainbow DQN: https://arxiv.org/pdf/1710.02298v1.pdf
+Double DQN: https://arxiv.org/pdf/1511.06581.pdf 
+Prioritized Experience Replay: https://arxiv.org/pdf/1511.05952.pdf
+Noise experiments: https://arxiv.org/pdf/2011.11850.pdf
+Double DQN: https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/
+Vanilla Policy Gradient: 
+https://papers.nips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf
+https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b
+
+
