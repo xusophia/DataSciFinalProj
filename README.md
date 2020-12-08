@@ -17,7 +17,9 @@ Lunar Lander is a game where one maneuvers a moon lander to attempt to carefully
 The benchmark for winning the game is 200 points.
 
 An example of the game in action is shown below:
-(GIF here)
+
+(Sophia's GIFs here)
+
 The above landing would have earned +100 points for coming to rest with ground contact for both legs.
 
 
@@ -64,7 +66,7 @@ Vanilla DQN is our baseline model that utilizes the above network to learn the s
   
 The 200 average score threshold is reached at around 660 episodes. The model has learned the environment successfully as demonstrated by its ability to land and turn off the engine in the video below:
 
-(GIF)
+<img src="results/vanilladub_Trimtrim.gif"/>
 
 ### Double DQN
 After implementing the DQN, we moved on to trying the Double DQN model. For background, a popular problem of the previous algorithm of DQN models is the overestimation of the action value, or Q-value. Instead, the algorithm of Double Q-Learning solves the problem of overestimating the action value, or the Q-value. This algorithm utilizes two action-value functions as estimators.
