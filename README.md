@@ -3,6 +3,12 @@
 Final project for EE460J Data Science Lab
 By Niruti Dhoble, Jianchen Gu, Indhu Gunda, Shreyas Kudari, Isaac Lee, Sophia Xu, and Kory Yang
 
+## Built with:
+
+<img src="results/320px-OpenAI_Logo.svg.png"/>
+
+<img src="results/246px-PyTorch_logo_black.svg.png"/>
+
 ## Introduction 
 Deep Reinforcement learning is an exciting branch of AI that closely mimics the way human intelligence explores and learns in an environment. In our project, we dive into deep RL and explore ways to solve OpenAI Gym’s Lunar Lander v2 problem with Deep Q-Learning variants and a Policy Gradient. We also tested the robustness of successful models to real-world scenarios by introducing sensor noise, engine failures, and turbulence to the original environment. Finally, we attempt quantized reinforcement learning to improve speed and memory efficiency.
 
