@@ -1,14 +1,11 @@
+'''Double DQN training in state noise environment'''
 import gym
-from VanillaDqn import DQN
 from DoubleDqn import DoubleDQN
 import numpy as np
 import torch
-
-from gym.wrappers.monitoring.video_recorder import VideoRecorder
 import matplotlib.pyplot as plt
-
+from stateNoise import addNoise
 env = gym.make('LunarLander-v2')
-# recorder = VideoRecorder(env, path='results/vanilladqn.mp4')
 episodes = 1000
 epsilon = 1.0
 gamma = 0.99
@@ -17,21 +14,21 @@ counter = 0
 update_t = 4
 batch_size = 64
 lr = 1e-3
-network = DoubleDQN(env, lr=lr, gamma=gamma, epsilon=epsilon, buffer_size=buffer_size)
+
+network = DoubleDQN(env, lr = lr, gamma = gamma, epsilon = epsilon, buffer_size =buffer_size)
 reward_list_ep = []
 reward_last_100_eps = []
-for episode in range(episodes + 1):
+
+for episode in range(episodes+1):
     state = env.reset().astype(np.float32)
     reward_ep, done = 0, False
-
     while not done:
-        # env.render()  # Comment this if you do not want rendering
-        # env.unwrapped.render() # Comment this if you do not want rendering
-        # recorder.capture_frame()
+        #env.unwrapped.render() # Comment this if you do not want
         state_tensor = torch.from_numpy(state)
         action = network.get_action(state_tensor)
         next_state, reward, done, info = env.step(action)
         next_state = next_state.astype(np.float32)
+        next_state = addNoise(next_state) #adding gaussian noise
         reward_ep += reward
         network.insert(state, action, reward, next_state, done)
         state = next_state
@@ -39,7 +36,7 @@ for episode in range(episodes + 1):
         counter += 1
         counter %= update_t
 
-        if len(network.buffer) > batch_size and counter==0:  # update weights every 5 steps
+        if len(network.buffer) > batch_size and counter==0: #update weights every 5 steps
             states, actions, rewards, next_states, dones = network.sample_buffer(batch_size)
             loss = network.train_batch(states, actions, rewards, next_states, dones)
 
@@ -51,31 +48,22 @@ for episode in range(episodes + 1):
         reward_last_100_eps = reward_last_100_eps[1:]
     reward_last_100_eps.append(reward_ep)
 
-    if episode % 50 == 0 and episode > 1:
+    if episode % 50 == 0 and episode>1:
         print(f'Episode {episode}/{episodes}. Epsilon: {network.epsilon:.3f}.'
               f' Reward in the last 100 episodes: {np.mean(reward_last_100_eps):.2f}')
     last_rewards_mean = np.mean(reward_last_100_eps)
-    if last_rewards_mean > 200:
+    if last_rewards_mean>200:
         break
 env.close()
-PATH1 = 'saved/lunarlander_double.pt'
+PATH1 = 'saved/lunarlander_double_noise_0.5.pt'
 torch.save(network.state_dict(), PATH1)
-# fig = plt.figure(figsize=(20, 10))
-# plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
-# plt.xlabel("Episodes")
-# plt.ylabel("Rewards")
-# plt.savefig('results/doubleDQNscatter3.png')
-# plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
-# plt.xlabel("Episodes")
-# plt.ylabel("Rewards")
-# plt.savefig('results/doubleDQNplot3.png')
+fig = plt.figure(figsize=(20,10))
+plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('results/double_noise_0.5_scatter.png')
+plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
+plt.xlabel("Episodes")
+plt.ylabel("Rewards")
+plt.savefig('results/double_noise_0.5_plot.png')
 
-# fig = plt.figure(figsize=(20, 10))
-# plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
-# plt.xlabel("Episodes")
-# plt.ylabel("Rewards")
-# plt.savefig('results/vanillaDQNscatter.png')
-# plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
-# plt.xlabel("Episodes")
-# plt.ylabel("Rewards")
-# plt.savefig('results/vanillaDQNplot.png')
