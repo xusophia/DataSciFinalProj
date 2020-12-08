@@ -1,4 +1,4 @@
-# Deep Reinforcement Learning for Lunar Landing
+# Lunar Lander - Deep Reinforcement Learning, Noise Robustness, and Quantization
 
 Final project for EE460J Data Science Lab
 
