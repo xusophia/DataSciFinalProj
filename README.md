@@ -231,7 +231,7 @@ The Policy Gradient model was also tested and compared to the other three models
 
 <img src="results/VPG_wind_div6.png"/>
 
-As stated earlier, if the power is too large, then it would be difficult for the training to occur on these models. To better emphasize the difficulty in obtaining a positive reward, the Vanilla DQN model was trained on an environment that had a wind force of the main engineer *6. When graphed episodes vs rewards, rarely produced a reward value of 0 or higher. The rewards were primarily negativity, thus explaining that too much power wont allow for proper training to occur. 
+As stated earlier, if the power is too large, then it would be difficult for the training to occur on these models. To better emphasize the difficulty in obtaining a positive reward, the Vanilla DQN model was trained on an environment that had a wind force of the main engineer * 3. When graphed episodes vs rewards, rarely produced a reward value of 0 or higher. The rewards were primarily negativity, thus explaining that too much power wont allow for proper training to occur. 
 The following graph is for the Vanilla DQN where the wind power = main engine power *3:
 
 <img src="results/WIND- Main Engine_mult_3.png"/>
