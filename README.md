@@ -17,7 +17,7 @@ Lunar Lander is a game where one maneuvers a moon lander to attempt to carefully
 The benchmark for winning the game is 200 points.
 
 An example of the game in action is shown below:
-(Place GIF here)
+(GIF here)
 The above landing would have earned +100 points for coming to rest with ground contact for both legs.
 
 
@@ -60,11 +60,11 @@ insert network architecture picture here
 ### Vanilla DQN (Standard DQN)
 Vanilla DQN is our baseline model that utilizes the above network to learn the state Q-values. We compute the loss and update the weights every 5 iterations with a batch size of 32. Our future value discount rate, gamma, is 0.99. The learning results are as follows:
 
-graph
+<img src="results/results/vanillaDQNplot.png"/>
   
 The 200 average score threshold is reached at around 660 episodes. The model has learned the environment successfully as demonstrated by its ability to land and turn off the engine in the video below:
 
-Insert video
+(GIF)
 
 ### Double DQN
 After implementing the DQN, we moved on to trying the Double DQN model. For background, a popular problem of the previous algorithm of DQN models is the overestimation of the action value, or Q-value. Instead, the algorithm of Double Q-Learning solves the problem of overestimating the action value, or the Q-value. This algorithm utilizes two action-value functions as estimators.
@@ -250,23 +250,23 @@ Our Vanilla and Duelling DQNs were not able to reach an average 200 score in tra
 
 Dueling DQN training with sensor noise ~ N(u=0,sigma = 0.05):
 
-graph
+<img src="results/results/duel_noise_plot.png"/>
 
 Dueling DQN training with sensor noise ~ N(u=0,sigma = 0.5):
 
-graph
+<img src="results/results/duel_noise_0.5_plot.png"/>
 
 Our Double DQN agent was able to cross the 200 point benchmark for zero-mean noise with sigma = 0.05 within 650 episodes. The Double DQN appears to be more stable with less variance in reward results and therefore fewer losses which don’t pull the average down. This may be because of the more stable nature of the target Q-values during training since it is updated in periods. This is letting the model to generalize the state-action values much better than other models that have constantly moving target Q-values during updates.
 
 Double DQN training with sensor noise ~ N(u=0, sigma = 0.05):
 
-graph
+<img src="results/results/double_noise_0.05_plot.png"/>
 
 However, with a noise standard deviation of 0.5, Double failed to average the benchmark score and demonstrates the highest variance in rewards. 
 
 Double DQN training with sensor noise ~ N(u=0, sigma = 0.5):
 
-graph
+<img src="results/results/double_noise_0.5_plot.png"/>
 
 Our Vanilla Policy Gradient agent was able to cross the 200 point benchmark for zero-mean noise with sigma = 0.05 at roughly 5200 episodes. In comparison to the DQN agents, VPG required nearly ten times the number of episodes to reach our reward benchmark. This can be attributed to VPG’s architecture, since “on-policy” methods learn from its trajectory (action and rewards) on its current policy gradient, rather than learning from different actions in the case of DQNs. VPG also appears to reduce its variance more on its path to convergence in comparison to DQNs. This suggests that although VPG requires more episodes, it increases in stability compared to DQNs as it reaches convergence.
 
@@ -287,15 +287,15 @@ Noise ~ N(u=0,sigma = 0.05)
 
 Vanilla DQN in noise:
 
-graph
+<img src="results/noise_results/Trained_van_with_noise_0.05.png"/>
 
 Duelling DQN in noise;
 
-graph
+<img src="results/noise_results/Trained_duelling_with_noise_0.05.png"/>
 
 Double DQN in noise:
 
-graph
+<img src="results/noise_results/Trained_double_with_noise_0.05.png"/>
 
 All the models, trained with and without noise, perform relatively the same when the standard deviation of noise distribution in sensors is 0.05. Some subtle differences can be noticed in the variances of the rewards. The Vanilla DQN trained with noise appears to have smaller variance and hence better stability in handling the environment. The two Duelling variants are very close to each other in performance and overall more stable than Vanilla variants. The Double DQN trained without noise performs better than all the other models due to its stability and low variance in the rewards. The model trained with the noise has very high variance in performance but still manages to cross the 200 threshold. To draw a clearer distinction of each of these agents, we increased the standard deviation to 0.5.
 
@@ -303,13 +303,15 @@ Noise ~ N(u=0,sigma = 0.5)
 
 Vanilla DQN in noise:
 
-graph
+<img src="results/noise_results/Trained_van_with_noise_0.5.png"/>
 
 Duelling DQN in noise:
 
-graph
+<img src="results/noise_results/Trained_duelling_with_noise_0.5.png"/>
 
 Double DQN in noise:
+
+<img src="results/noise_results/Trained_double_with_noise_0.5.png"/>
 
 We see more interesting results in this case. Notice that the models trained without noise are averaging around 0 for all the three DQN variants. However, the Vanilla DQN trained with noise performs worse than the Vanilla trained without noise. This indicates that the noise is hampering the learning process and the agent is fooled into learning the wrong Q-values for the states. This does not happen in the Duelling and Double models as evident by their ability to cross the 200 threshold. To be more specific, these two models seem to approximately have 50% good results and 50% poor results. 
 
@@ -317,9 +319,15 @@ To hypothesize, dueling is able to perform better because of its ability to deco
 
 When investigated visually, we noticed that the lander that has been trained in the noisy environment sacrifices speed for more conservative and careful actions. The agent trained in an ideal setting, however, tends to perform very quick actions with high confidence which leads to poorer performance in a noisy environment.  
 
-GIFS HERE
+Duelling trained without noise
 
-Overall, a problem like this can be framed as a Partially Observable Markov Decision Process., which helps to calculate the expected utility of each action. However, because lunar landing presents a continuous space, this does become a complex problem to model.
+<img src="results/duellingnonoise_Trim.gif"/>
+
+Duelling trained with noise
+
+<img src="results/dueling0.5_trimed.gif"/>
+
+Overall, a problem like this can be framed as a Partially Observable Markov Decision Process., which helps to calculate the expected utility of each action by maintaining belief vectors. However, because lunar landing presents a continuous space, this does become a complex problem to model as we would need to discretize the space.
 
 ### Action Noise - Engine Failure
 
