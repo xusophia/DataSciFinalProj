@@ -69,9 +69,7 @@ The 200 average score threshold is reached at around 660 episodes. The model has
 ### Double DQN
 After implementing the DQN, we moved on to trying the Double DQN model. For background, a popular problem of the previous algorithm of DQN models is the overestimation of the action value, or Q-value. Instead, the algorithm of Double Q-Learning solves the problem of overestimating the action value, or the Q-value. This algorithm utilizes two action-value functions as estimators. The main difference between the Vanilla DQN and the Double DQN is the target equation, which is as follows:
 
-CHANGE IT HERE IDK
-
-
+<img src="https://latex.codecogs.com/gif.latex?Q^{\ast}(s_{t},a_{t})\approx{r_{t}}+\gamma{Q(s_{t+1}.argmax_{a^{'}}Q^{'}(s_{t},a_{t}))}"/>
 
 We follow [this algorithm](insert link)
 
