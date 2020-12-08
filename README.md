@@ -152,7 +152,7 @@ The aggregation of all of these models, according to the original paper proposin
 
 When applied to Lunar Lander, however, the training proved to be fairly unstable. When applied to the Lunar Lander environment, the mean reward would not converge to a value of 200 or higher, and in most cases the model would see an initial increase in the mean reward, plateau, and then decrease as time went on (catastrophic forgetting). In the training session below, the mean peaked at around 200-300 episodes, at a reward of around 150 points. One possible reason why Rainbow failed to produce results is due to Rainbow’s incorporation of prioritized experience replay, which also failed to perform well on the lunar lander environment (see previous section on prioritized experience replay).
 
-graphs
+<img src="results/RainbowDQNplot.png"/>
 
 ### Vanilla Policy Gradient 
 Policy Gradient is the second of the two major approaches (other being DQN) to deep reinforcement learning. Although our project mostly focused on DQN and its variants, we wanted to give Policy Gradient a try and see how its vanilla version compares. In contrast to DQNs, which tries to satisfy the Bellman Equation, the Policy Gradient method tries to maximize returns by slowly converging toward its policy gradient.
