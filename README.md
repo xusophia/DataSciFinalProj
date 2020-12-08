@@ -311,15 +311,15 @@ Overall, this suggests that not only is the Double DQN model the best in an idea
 
 Vanilla DQN:
 
-![graph](/results/vanillaDQNscatterEngineNoise "Vanilla") 
+![graph](/results/vanillaDQNscatterEngineNoise.png "Vanilla") 
 
 Double DQN:
 
-![graph](/results/doubleDQNscatterEngineNoise2 "Double") 
+![graph](/results/doubleDQNscatterEngineNoise2.png "Double") 
 
 Dueling DQN:
 
-![graph](/results/duelingDQNscatterEngineNoise "Dueling") 
+![graph](/results/duelingDQNscatterEngineNoise.png "Dueling") 
 
 Vanilla Policy Gradient:
 
