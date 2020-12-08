@@ -190,17 +190,17 @@ These are the graphs for each type of Engine Power:
 
 * Vanilla: Vanilla required 1000 episodes in order for the convergence to be seen, thus out of all the graphs, Vanilla DQN has 1000 episodes
 
-graph
+<img src="results/VDQN _WIND- 1000_dividedby3 .png"/>
 
 * Double DQN:
 
-graphs
+<img src="results/DoubleDQNscatter - Wind_divided_by_3.png"/>
 
 * Dueling DQN:
 
-graph
+<img src="results/DDQN - Wind - divided by 3.png"/>
 
-Furthermore we also tried Vanilla Policy Gradient and interestingly enough the policy gradient was similar to the Dueling in having a positive range of rewards. However Policy Gradient required more episodes to be trained on in order for the convergence to be seen.
+Furthermore we also tried Vanilla Policy Gradient and interestingly enough the policy gradient was similar to the Vanilla DQN out of the other three models. Both the Policy Gradient and the Vanilla DQN had results near 0. 
 
 * Policy Gradient:
 
@@ -210,17 +210,17 @@ graph
 
 * Vanilla DQN:
 
-graph
+<img src="results/VDQN _WIND- 10006 .png"/>
 
 * Double DQN:
 
-graph
+<img src="results/DoubleDQNscatter - Wind_divided_by_6.png"/>
 
 * Dueling DQN:
 
-graph
+<img src="results/DDQN - Wind 6.png"/>
 
-The Policy Gradient model was also tested and compared to the other three models tested for this specific Wind power, the Policy Gradient produced a convergence as well and was relatively more positive, yet the same problem occurred with the wind power = main engine power/ 3, where Policy Gradient required more episodes to train on in order to get a clearer results.
+The Policy Gradient model was also tested and compared to the other three models tested for this specific Wind power, the Policy Gradient produced a convergence at the value 0 rather than having many positive rewards. This result was similar to the Wind power = main engine power /3.
 
 graph
 
@@ -229,7 +229,10 @@ The following graph are for the Vanilla DQN where the wind power = main engine p
 
 graph
 
-Overall the Dueling DQN Model worked the best and provided the best rewards. Vanilla DQN and Double DQN were good models but didn’t provide as many rewards. Policy Gradient was something new and it worked pretty well. However it required a lot more episodes in order for the convergence to be seen.
+Overall the models ranked as the following in producing positive rewards: Dueling DQN, Double DQN, Vanilla Policy Gradient/ Vanillia DQN. Notice that the models trained without noise are averaging around 0 for all the three DQN variants.However Vanilia DQN actually did worse when the wind turbulence was introduced. This shows that Vanilla DQN had a difficult time training in a windy environment.  This means that the agents are not learning off the correct Q-values. In Dueling and Double models, the amount of rewards are increasing as the episode count increases. Thus these two models are doing much better than the Vanilla DQN. A possible reason as to why this occurred is that Dueling was better than Double is because it was  able to separate the action and state values, which allowed the model to learn effectively in windy environments. Furthermore, The dueling architecture is also relatively robust to noise, which may reflect the wind,  due to its separate advantage stream as opposed to other single stream networks
+
+Vanilla Policy Gradient which is different from DQN learning algorithms, did surprisingly bad. A possible reason as to why this might have occurred is that the policy gradient only goes off the current episode which may be why it was not able to adapt to the windy environments, because it wasn’t able to see a pattern in the wind. Thus requiring more episodes in order for the convergence to be seen. 
+
 
 **WIP**
 
