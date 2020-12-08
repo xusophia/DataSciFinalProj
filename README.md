@@ -418,7 +418,7 @@ Double DQN was the best model in an ideal environment and the pretrained ideal m
 Vanilla Policy Gradient was able to learn to cross the threshold in all of our environments, except for the 20% engine failure case where it actively performed worse. However, convergence for VPG did require significantly more episodes in training, but this is most likely attributed to Policy Gradient architecture. Finally, VPG did show some of the lowest variances in comparison to DQNs, when our agent reached convergence at +200 everage rewards.
 
 ## References
-Vanilla DQN: [https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf]
+Vanilla DQN:<link href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">
 Rainbow DQN: [https://arxiv.org/pdf/1710.02298v1.pdf]
 Double DQN: [https://arxiv.org/pdf/1511.06581.pdf]
 Prioritized Experience Replay: [https://arxiv.org/pdf/1511.05952.pdf]
