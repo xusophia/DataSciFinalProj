@@ -87,7 +87,7 @@ We follow [this algorithm](insert link)
 
 When applied to Lunar Lander it performed very well and had significant advantages over Vanilla DQN. As can be seen in the plots below, there were fewer outliers than for Vanilla DQN making the Double DQN’s more robust. In addition, the 200 average score threshold is reached at around 425 episodes which is faster than with the Vanilla DQN.
 
-graphs
+<img src="results/results/doubleDQNplot2.png"/>
 
 ### Dueling DQN
 The Dueling DQN is an alternative variation of the standard vanilla DQN utilizing a novel dueling architecture. This structure utilizes two separate streams to explicitly separate the representation of state values and state-dependent action advantages.The two streams represent the value and advantage functions, and share a common convolutional feature learning module (Wang et al.).
