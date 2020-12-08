@@ -210,7 +210,7 @@ graph
 
 * Vanilla DQN:
 
-<img src="results/VDQN _WIND- 10006 .png"/>
+<img src="results/VDQN_WIND- 10006.png"/>
 
 * Double DQN:
 
@@ -225,9 +225,9 @@ The Policy Gradient model was also tested and compared to the other three models
 graph
 
 As stated earlier, if the power is too large, then it would be difficult for the training to occur on these models. To better emphasize the difficulty in obtaining a positive reward, the Vanilla DQN model was trained on an environment that had a wind force of the main engineer * 3 and the main engineer *6. Both of these models, when graphed episodes vs rewards, rarely produced a reward value of 0 or higher. The rewards were primarily negativity, thus explaining that too much power wont allow for proper training to occur. 
-The following graph are for the Vanilla DQN where the wind power = main engine power /3:
+The following graph are for the Vanilla DQN where the wind power = main engine power *3:
 
-graph
+<img src="results/WIND- Main Engine_mult_3.png"/>
 
 Overall the models ranked as the following in producing positive rewards: Dueling DQN, Double DQN, Vanilla Policy Gradient/ Vanillia DQN. Notice that the models trained without noise are averaging around 0 for all the three DQN variants.However Vanilia DQN actually did worse when the wind turbulence was introduced. This shows that Vanilla DQN had a difficult time training in a windy environment.  This means that the agents are not learning off the correct Q-values. In Dueling and Double models, the amount of rewards are increasing as the episode count increases. Thus these two models are doing much better than the Vanilla DQN. A possible reason as to why this occurred is that Dueling was better than Double is because it was  able to separate the action and state values, which allowed the model to learn effectively in windy environments. Furthermore, The dueling architecture is also relatively robust to noise, which may reflect the wind,  due to its separate advantage stream as opposed to other single stream networks
 
