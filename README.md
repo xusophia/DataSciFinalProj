@@ -326,7 +326,10 @@ When investigated visually, we noticed that the lander that has been trained in 
 
 <img src="results/dueling0.5_trimed.gif"/>
 
-Overall, a problem like this can be framed as a Partially Observable Markov Decision Process., which helps to calculate the expected utility of each action by maintaining belief vectors. However, because lunar landing presents a continuous space, this does become a complex problem to model as we would need to discretize the space.
+
+The same reason has been observed in the Double DQN that was trained with the noise. This might be the benefit of fixed targets which are updated only periodically and therefore the noise across frames and episodes do not move the targets as frequently as in Vanilla DQN. 
+
+Overall, a problem like this can be framed as a Partially Observable Markov Decision Process., which helps to calculate the expected utility of each action. However, because lunar landing presents a continuous space, this does become a complex problem to model.
 
 ### Action Noise - Engine Failure
 
@@ -337,19 +340,19 @@ As can be seen in the plots below, all three of the DQN variants were not able t
 
 Overall, this suggests that not only is the Double DQN model the best in an ideal setting it is also more robust in dealing with this type of noise. This possibly could be due to the higher stability of periodic updates to the target Q-values during training and as a result generalizing the state-action values more accurately than models that constantly update target Q-values.
 
-Vanilla DQN:
+##### Vanilla DQN:
 
 <img src="results/vanillaDQNscatterEngineNoise.png">
 
-Double DQN:
+##### Double DQN:
 
 <img src="results/doubleDQNscatterEngineNoise2.png"> 
 
-Dueling DQN:
+##### Dueling DQN:
 
 <img src="results/duelingDQNscatterEngineNoise2.png"> 
 
-Vanilla Policy Gradient
+##### Vanilla Policy Gradient
 
 <img src="results/VPG_engine_noise_training_record.png"/>
 
@@ -357,15 +360,15 @@ Vanilla Policy Gradient
 #### Action Noise Robustness Comparisons
 Below are the plots for agents trained with and without noise in a noisy environment for a 100 episodes.
 
-Vanilla DQN:
+##### Vanilla DQN:
 
 <img src="results/idealVsNoisyVanilla2.png" class="inline"/> 
 
-Double DQN:
+##### Double DQN:
 
 <img src="results/idealVsNoisyDouble2.png"/> 
 
-Dueling DQN:
+##### Dueling DQN:
 
 <img src="results/idealVsNoisyDueling2.png"/>
 
@@ -393,7 +396,4 @@ We achieved the following results of quantizing a (Vanilla) DQN to a Quantized D
 
 As seen from the table above, quantizing the networks results in a memory decrease by about a factor of 5, which shows promising results if model complexity or computation increases.
 
-
-
-   
-   ## Conclusions
+## Conclusions
