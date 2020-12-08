@@ -112,7 +112,7 @@ In the context of Lunar Lander, Prioritized Experience Replay was implemented on
 
 The model was able to stabilize by approximately episode 800, but continuously oscillated and never broke a 100-episode average of greater than 200, even by the hard 1000 episode limit. The graphs also show some pretty volatile behavior, with a good number of sudden, drastic drops in performance even near the end.
 
-However, there are multiple justifications for this seemingly strange behavior. For one, the research publication on Prioritized Experience Replay observed a large variation in outcome across multiple environments, and it is possible Lunar Lander in particular may not be suitable for this approach. Lunar Lander is also a rather simple environment presenting a problem that typically takes far less episodes to fully solve than that of many other games.It is possible that Prioritized Experience Replay resulted in significant overfitting through continuous sampling of the same experiences or introduced bias due to the nature of the experiences leading to crashes far more than successful landings.Thus, Prioritized Experience Replay may not be suitable for Lunar Lander.
+However, there are multiple justifications for this seemingly strange behavior. For one, the research publication on Prioritized Experience Replay observed a large variation in outcome across multiple environments, and it is possible Lunar Lander in particular may not be suitable for this approach. Lunar Lander is also a rather simple environment presenting a problem that typically takes far less episodes to fully solve than that of many other games.It is possible that Prioritized Experience Replay resulted in significant overfitting through continuous sampling of the same experiences or introduced bias due to the nature of the experiences leading to crashes far more than successful landings. Thus, Prioritized Experience Replay may not be suitable for Lunar Lander.
 
 ### Rainbow DQN
 Rainbow DQN is a DQN variant that combines improvements of many different variations of DQN into a single model. Building on top of the original DQN, the original paper for Rainbow selected six specific improvements to aggregate into one model (Hessel et al.):
@@ -175,7 +175,7 @@ In our experience running VPG on Lunar Lander, we found that our model was able 
 
 Something to note is that since Policy Gradient methods are “on-policy”, they are generally much less sample efficient in comparison to “off-policy”. As mentioned earlier, this means that Policy Gradient is unable to reuse experience in choosing trajectories from prior policies in order to reduce bias. The architecture of VPG itself can justify why VPG takes a significantly higher number of episodes in training to reach average returns of +200 in Lunar Lander.
 
-graph
+<img src="results/VPG_default_training_record.png"/>
 
 ## Environment Changes and Noise Addition
 A creative aspect of this project was how the team changed the environment for lunar landing to incorporate turbulence, sensor noise, and action noise. 
@@ -270,13 +270,13 @@ Our Vanilla Policy Gradient agent was able to cross the 200 point benchmark for 
 
 Vanilla Policy Gradient training with sensor noise ~ N(u=0, sigma = 0.05):
 
-graph
+<img src="results/VPG_input_noise_low_std_training_record.png"/>
 
 Interestingly, even with a noise standard deviation of 0.5, VPG was able to converge in roughly 5200 episodes. This contrasts from DQNs, which were unable to converge in the same number of episodes (or at all) for both noise standard deviations. The results suggest that VPG is much less affected by sensor noise, as well as being a more stable model toward convergence. Again, we also observe a tighter reward spread as episodes go on, suggesting increased stability as it nears convergence as well.
 
 Vanilla Policy Gradient training with sensor noise ~ N(u=0, sigma = 0.5):
 
-graph
+<img src="results/VPG_input_noise_high_std_training_record.png"/>
 
 #### Sensor Noise Robustness Comparisons
 The following are the plots for agents trained with and without noise running in a noisy environment for 100 episodes:
@@ -339,6 +339,10 @@ Double DQN:
 Dueling DQN:
 
 <img src="results/duelingDQNscatterEngineNoise2.png"> 
+
+Vanilla Policy Gradient
+
+<img src="results/VPG_engine_noise_training_record.png"/>
 
 
 #### Action Noise Robustness Comparisons
