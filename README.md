@@ -419,13 +419,22 @@ Vanilla Policy Gradient was able to learn to cross the threshold in all of our e
 
 ## References
 Vanilla DQN: [https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
+
 Rainbow DQN: [ https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf](https://arxiv.org/pdf/1710.02298v1.pdf)
+
 Double DQN: [https://arxiv.org/pdf/1511.06581.pdf](https://arxiv.org/pdf/1511.06581.pdf)
+
 Prioritized Experience Replay: [https://arxiv.org/pdf/1511.05952.pdf](https://arxiv.org/pdf/1511.05952.pdf)
+
 Noise experiments: [https://arxiv.org/pdf/2011.11850.pdf](https://arxiv.org/pdf/2011.11850.pdf)
+
 Double DQN: [https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/](https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/)
+
 Vanilla Policy Gradient: 
+
 [https://papers.nips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf](https://papers.nips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf)
+
 [https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b](https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b)
+
 
 
