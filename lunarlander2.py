@@ -61,7 +61,7 @@ env.close()
 
 
 print(torch.backends.quantized.supported_engines)
-quantized_model = torch.quantization.quantize_dynamic(network, {nn.Linear}, dtype=torch.qint8)
+quantized_model = torch.quantization.quantize_dynamic(network, {}, dtype=torch.qint8)
 print(quantized_model)
 def print_size_of_model(model):
     torch.save(model.state_dict(), "temp.p")
@@ -108,14 +108,13 @@ for episode in range(episodes+1):
     if last_rewards_mean>200:
         break
 
+from model_loader import run_model
+result = run_model(quantized_model)
 
 fig = plt.figure(figsize=(20,10))
-plt.scatter([i for i in range(len(reward_list_ep))], reward_list_ep)
+fig = plt.figure(figsize=(20,10))
+plt.plot([i for i in range(len(result))], result, 'y', label="Quantized Dueling DQN")
 plt.xlabel("Episodes")
 plt.ylabel("Rewards")
-plt.savefig('results/DuelingDQNscatter.png')
-plt.plot([i for i in range(len(reward_list_ep))], reward_list_ep)
-plt.xlabel("Episodes")
-plt.ylabel("Rewards")
-plt.savefig('results/DuelingDQNplot.png')
+plt.savefig('DuelingDQNplot_Quantized.png')
 
