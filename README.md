@@ -1,6 +1,7 @@
 # Deep Reinforcement Learning for Lunar Landing
 
 Final project for EE460J Data Science Lab
+
 By Niruti Dhoble, Jianchen Gu, Indhu Gunda, Shreyas Kudari, Isaac Lee, Sophia Xu, and Kory Yang
 
 ## Built with:
@@ -404,7 +405,7 @@ To do this, quantization of our Vanilla DQN model using float32s was quantized t
 <img src="https://latex.codecogs.com/gif.latex?x_{int8}=\frac{x_{float}}{x_{scale}}+x_{offset}"/>
 
 
-Pytorch [has a library](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) that provides the quantization of tensors, mapping the original floating point based tensors to quantized tensors. The method for quantization used in our project was using Dynamic Quantization, which converts the activations to int8s dynamically, allowing for efficient int8 multiplication and convolution, but this method means that activations and read/written from/to memory in floating point. 
+Pytorch [has a library](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) that provides the quantization of tensors, mapping the original floating point based tensors to quantized tensors. The method for quantization used in our project was using Dynamic Quantization, which converts the activations to int8s dynamically, allowing for efficient int8 multiplication and convolution, but this method means that activations and read/written from/to memory in floating point. We were inclined to choose Dynamic Quantization for our models because while Quantized Aware Training as been shown in literature to provide more accuracy, we had a comparatively less complex model, so we implemented the simpler, Dynamic Quantization method. 
 
 To note here, the backend library of fbgemm in Pytorch's Quantization library that provides the backend to quantize these networks is currently in beta, and upon our implementation, the backend library that Pytorch uses, fbgemm, is not yet sophistically developed for Windows and had to be migrated to MacOS according to Pytorch forum search. 
 
@@ -417,7 +418,14 @@ We achieved the following results of quantizing a (Vanilla) DQN to a Quantized D
 
 As seen from the table above, quantizing the networks results in a memory decrease by about a factor of 5, which shows promising results if model complexity or computation increases.
 
-We were motivated to quantize our network because the nature of Lunar Lander could possibly translate to real-world applications, such as aerial robotics. Running the model with a reduced memory size and faster computations thus could result in a system that uses less power and responds faster in real-time.
+The graph below is the result of applying the Dynamic Quantization method to quantize the Dueling DQN, one of our better models.
+
+##### Quantized Dueling DQN:
+<img src="results/QuantizedDuelingDQNplot.png"/>
+
+As seen from above, the Quantized Dueling DQN reaches the score of 200 (and exceeds the score) within about 300 episodes, although there is a good variance to the scores achieved throughout the episodes. This indicates that quantizing our model not only decreases memory needed and operations needed, but achieves about the same of a non-quantized (float32) model. 
+
+We were motivated to quantize our network because the nature of Lunar Lander could possibly translate to real-world applications, such as aerial robotics. Running the model with a reduced memory size and faster computations thus could result in a system that uses less power and responds faster in real-time. Dynamically quantizing [improves latency](https://www.tensorflow.org/lite/performance/post_training_quantization) (especially important for real time applications), as the 8-bit calculations conducted here presents an advantage over computing with floats.
 
 ## Conclusions
 Several variations of the Vanilla DQN were implemented, including the Double DQN, Dueling DQN, Prioritized Experience Replay, Rainbow DQN (a combined model of multiple DQN approaches), and even a Vanilla Policy Gradient. Each model presented distinct processes, advantages, and disadvantages that were recorded and analyzed in the context of Lunar Lander. These models were then implemented and tested in further developments of the project.
@@ -431,7 +439,7 @@ Double DQN was the best model in an ideal environment and the pretrained ideal m
 
 Vanilla Policy Gradient was able to learn to cross the threshold in all of our environments, except for the 20% engine failure case where it actively performed worse. However, convergence for VPG did require significantly more episodes in training, but this is most likely attributed to Policy Gradient architecture. Finally, VPG did show some of the lowest variances in comparison to DQNs, when our agent reached convergence at +200 everage rewards.
 
-Quantized Reinforcement Learning was an approach we took after developing our other models, and we were particularly motivated to see the difference in accuracy between a quantized and non-quantized model.
+Quantized Reinforcement Learning was an approach we took after developing our other models, and we were particularly motivated to see the difference in accuracy between a quantized and non-quantized model. By quantizing our Dueling DQN, we were able to achieve similar results to the non-quantized Dueling DQN, providing great implications to applying reinforcement learning to a real-world applications such as aerial robotics where memory and time are especially of the essence.
 
 ## References
 Vanilla DQN: [https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
