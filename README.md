@@ -311,15 +311,15 @@ Overall, this suggests that not only is the Double DQN model the best in an idea
 
 Vanilla DQN:
 
-![graph](/results/vanillaDQNscatterEngineNoise.png "Vanilla") 
+<img src="/results/vanillaDQNscatterEngineNoise.png">
 
 Double DQN:
 
-![graph](/results/doubleDQNscatterEngineNoise2.png "Double") 
+<img src="/results/doubleDQNscatterEngineNoise2.png"> 
 
 Dueling DQN:
 
-![graph](/results/duelingDQNscatterEngineNoise2.png "Dueling") 
+<img src="/results/duelingDQNscatterEngineNoise2.png"> 
 
 Vanilla Policy Gradient:
 
@@ -330,15 +330,15 @@ Below are the plots for agents trained with and without noise in a noisy environ
 
 Vanilla DQN:
 
-![graph](/results/idealVsNoisyVanilla2.png "Vanilla") 
+<img src="/results/idealVsNoisyVanilla2.png"> 
 
 Double DQN:
 
-![graph](/results/idealVsNoisyDouble2.png "Double") 
+<img src="/results/idealVsNoisyDouble2.png"> 
 
 Dueling DQN:
 
-![graph](/results/idealVsNoisyDueling2.png "Dueling") 
+<img src="/results/idealVsNoisyDueling2.png">
 
 Vanilla Policy Gradient:
 
