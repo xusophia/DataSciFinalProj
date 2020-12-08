@@ -330,15 +330,15 @@ Below are the plots for agents trained with and without noise in a noisy environ
 
 Vanilla DQN:
 
-![graph](/results/idealVsNoisyVanilla2 "Vanilla") 
+![graph](/results/idealVsNoisyVanilla2.png "Vanilla") 
 
 Double DQN:
 
-![graph](/results/idealVsNoisyDouble2 "Double") 
+![graph](/results/idealVsNoisyDouble2.png "Double") 
 
 Dueling DQN:
 
-![graph](/results/idealVsNoisyDueling2 "Dueling") 
+![graph](/results/idealVsNoisyDueling2.png "Dueling") 
 
 Vanilla Policy Gradient:
 
