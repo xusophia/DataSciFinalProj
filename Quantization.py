@@ -1,6 +1,6 @@
 # File for Quantization of Models
 
-import torch.quantization
+# import torch.quantization
 import torch.nn as nn
 from vanilla import DQN
 import gym
