@@ -399,13 +399,14 @@ In all cases, the models trained in an ideal environment outperformed those trai
 
 Another thing we tried is Quantized Reinforcement Learning, which is the process of approximating a neural network that is using floating points to a neural network using a lower number of bits. For background, the motivation of Quantization is in hopes of dramatically reducing both the memory requirement and computational cost of using neural networks for more efficient deployment on servers and edge devices.
 
-
 To do this, quantization of our Vanilla DQN model using float32s was quantized to a model using int8s, which is lower precision data, resulting in a possible difference in accuracy. The quantization formula is as follows: 
 
 <img src="https://latex.codecogs.com/gif.latex?x_{int8}=\frac{x_{float}}{x_{scale}}+x_{offset}"/>
 
 
 Pytorch [has a library](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/) that provides the quantization of tensors, mapping the original floating point based tensors to quantized tensors. The method for quantization used in our project was using Dynamic Quantization, which converts the activations to int8s dynamically, allowing for efficient int8 multiplication and convolution, but this method means that activations and read/written from/to memory in floating point. 
+
+To note here, the backend library of fbgemm in Pytorch's Quantization library that provides the backend to quantize these networks is currently in beta, and upon our implementation, the backend library that Pytorch uses, fbgemm, is not yet sophistically developed for Windows and had to be migrated to MacOS according to Pytorch forum search. 
 
 We achieved the following results of quantizing a (Vanilla) DQN to a Quantized DQN using int8:
 
@@ -415,6 +416,8 @@ We achieved the following results of quantizing a (Vanilla) DQN to a Quantized D
 | Quantized Model Memory | 1.077843 MB | 0.278775 MB |
 
 As seen from the table above, quantizing the networks results in a memory decrease by about a factor of 5, which shows promising results if model complexity or computation increases.
+
+We were motivated to quantize our network because the nature of Lunar Lander could possibly translate to real-world applications, such as aerial robotics. Running the model with a reduced memory size and faster computations thus could result in a system that uses less power and responds faster in real-time.
 
 ## Conclusions
 Several variations of the Vanilla DQN were implemented, including the Double DQN, Dueling DQN, Prioritized Experience Replay, Rainbow DQN (a combined model of multiple DQN approaches), and even a Vanilla Policy Gradient. Each model presented distinct processes, advantages, and disadvantages that were recorded and analyzed in the context of Lunar Lander. These models were then implemented and tested in further developments of the project.
@@ -427,6 +430,8 @@ Dueling and Double DQNs were able to tackle sensor noise of relatively high magn
 Double DQN was the best model in an ideal environment and the pretrained ideal model worked the best in an environment with 20% engine failures. Double DQN most likely performed so well because it effectively generalized the state-action pairs since the target Q values are only updated periodically.
 
 Vanilla Policy Gradient was able to learn to cross the threshold in all of our environments, except for the 20% engine failure case where it actively performed worse. However, convergence for VPG did require significantly more episodes in training, but this is most likely attributed to Policy Gradient architecture. Finally, VPG did show some of the lowest variances in comparison to DQNs, when our agent reached convergence at +200 everage rewards.
+
+Quantized Reinforcement Learning was an approach we took after developing our other models, and we were particularly motivated to see the difference in accuracy between a quantized and non-quantized model.
 
 ## References
 Vanilla DQN: [https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf](https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf)
@@ -447,5 +452,6 @@ Vanilla Policy Gradient:
 
 [https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b](https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b)
 
+Quantization: [https://scholar.harvard.edu/files/zishenwan/files/sysml2020.pdf](https://scholar.harvard.edu/files/zishenwan/files/sysml2020.pdf)
 
 
