@@ -418,14 +418,14 @@ Double DQN was the best model in an ideal environment and the pretrained ideal m
 Vanilla Policy Gradient was able to learn to cross the threshold in all of our environments, except for the 20% engine failure case where it actively performed worse. However, convergence for VPG did require significantly more episodes in training, but this is most likely attributed to Policy Gradient architecture. Finally, VPG did show some of the lowest variances in comparison to DQNs, when our agent reached convergence at +200 everage rewards.
 
 ## References
-Vanilla DQN: https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf 
-Rainbow DQN: https://arxiv.org/pdf/1710.02298v1.pdf
-Double DQN: https://arxiv.org/pdf/1511.06581.pdf 
-Prioritized Experience Replay: https://arxiv.org/pdf/1511.05952.pdf
-Noise experiments: https://arxiv.org/pdf/2011.11850.pdf
-Double DQN: https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/
+Vanilla DQN: [https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf]
+Rainbow DQN: [https://arxiv.org/pdf/1710.02298v1.pdf]
+Double DQN: [https://arxiv.org/pdf/1511.06581.pdf]
+Prioritized Experience Replay: [https://arxiv.org/pdf/1511.05952.pdf]
+Noise experiments: [https://arxiv.org/pdf/2011.11850.pdf]
+Double DQN: [https://blog.paperspace.com/building-double-deep-q-network-super-mario-bros/]
 Vanilla Policy Gradient: 
-https://papers.nips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf
-https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b
+[https://papers.nips.cc/paper/1999/file/464d828b85b0bed98e80ade0a5c43b0f-Paper.pdf]
+[https://towardsdatascience.com/breaking-down-richard-suttons-policy-gradient-9768602cb63b]
 
 
