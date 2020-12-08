@@ -420,7 +420,7 @@ Vanilla Policy Gradient was able to learn to cross the threshold in all of our e
 ## References
 Vanilla DQN: <link href="https://www.cs.toronto.edu/~vmnih/docs/dqn.pdf">
 
-Rainbow DQN: [https://arxiv.org/pdf/1710.02298v1.pdf]
+Rainbow DQN: [](https://arxiv.org/pdf/1710.02298v1.pdf)
 Double DQN: [https://arxiv.org/pdf/1511.06581.pdf]
 Prioritized Experience Replay: [https://arxiv.org/pdf/1511.05952.pdf]
 Noise experiments: [https://arxiv.org/pdf/2011.11850.pdf]
