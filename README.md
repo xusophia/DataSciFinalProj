@@ -19,6 +19,9 @@ An example of the game in action is shown below:
 
 The above landing would have earned +100 points for coming to rest with ground contact for both legs.
 
+<img src="results/Crash.gif"/>
+
+The above episode would have earned -100 points for crashing.
 
 ## Background
 ### Deep Q - Learning
